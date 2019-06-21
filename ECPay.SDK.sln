@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECPay.SDK", "ECPay.SDK\ECPay.SDK.csproj", "{A7DD7F69-D820-4ACE-8C58-71B466D4175A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7DD7F69-D820-4ACE-8C58-71B466D4175A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7DD7F69-D820-4ACE-8C58-71B466D4175A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7DD7F69-D820-4ACE-8C58-71B466D4175A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7DD7F69-D820-4ACE-8C58-71B466D4175A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B040DE59-3DE2-4D28-9B85-08AB3BB5979F}
+	EndGlobalSection
+EndGlobal
