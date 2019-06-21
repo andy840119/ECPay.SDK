@@ -23,7 +23,7 @@ namespace ECPay.SDK.Logistics.Enums
     /// <summary>
     /// 物流子類型
     /// </summary>
-    public enum LogisticsSubTypes
+    public enum LogisticsSubType
     {
         /// <summary>
         /// 無

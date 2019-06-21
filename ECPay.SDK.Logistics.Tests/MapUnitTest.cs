@@ -14,7 +14,7 @@ namespace ECPay.SDK.Logistics.Tests
         [TestMethod]
         public void TestMap()
         {
-            var result = _client.TestConnection();
+            var result = _client.CheckShippingProgress("aaa");
         }
     }
 }

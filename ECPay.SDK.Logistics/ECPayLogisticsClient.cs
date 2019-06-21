@@ -1,6 +1,7 @@
 ﻿using ECPay.SDK.Logistics.Models;
 using System;
 using System.Net;
+using System.Net.Http;
 
 namespace ECPay.SDK.Logistics
 {
@@ -26,7 +27,7 @@ namespace ECPay.SDK.Logistics
 
         #region Fields
 
-        private readonly WebClient _webClient;
+        private readonly HttpClient _webClient;
         private readonly ECPayLogisticsSettings _settings;
 
         #endregion
@@ -35,7 +36,7 @@ namespace ECPay.SDK.Logistics
 
         public ECPayLogisticsClient(ECPayLogisticsSettings settings)
         {
-            _webClient = new WebClient();
+            _webClient = new HttpClient();
 
             //Check setting before
             CheckSetting(settings);
@@ -65,11 +66,29 @@ namespace ECPay.SDK.Logistics
             request.MerchantID = _settings.MerchantID;
         }
 
-        protected virtual T GetData<T>(BaseECPayLogisticsRequest request)
+        protected virtual T GetData<T>(string url,BaseECPayLogisticsRequest request)
         {
             ApplySettingToRequest(request);
 
-            //TODO : 
+            /*
+            var httpContent = ParameterValidator.ValidateURLContent(distParameter, this.HashKey, this.HashIV);
+
+            //prepare
+            _webClient.BaseAddress = new Uri(url);
+            _webClient.DefaultRequestHeaders.Accept.Clear();
+
+            //query
+            HttpResponseMessage httpResponse = _webClient.PostAsync("", httpContent).Result;
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                response.IsSuccess = true;
+                response.Data = httpResponse.Content.ReadAsStringAsync().Result;
+            }
+            else
+            {
+                response.ErrorMessage = httpResponse.Content.ReadAsStringAsync().Result;
+            }
+            */
 
             return default(T);
         }
@@ -78,13 +97,22 @@ namespace ECPay.SDK.Logistics
 
         #region Methods
 
-        public string TestConnection()
+        /// <summary>
+        /// 查詢物流訂單
+        /// </summary>
+        /// <param name="trackingId">綠界科技的物流交易碼</param>
+        /// <returns></returns>
+        public string CheckShippingProgress(string trackingId)
         {
             //prepare request
-            var request = new BaseECPayLogisticsRequest();
+            var request = new CheckShippingProgressRequest
+            {
+                AllPayLogisticsID = trackingId,
+                PlatformID = "",//保留
+            };
 
             //get result
-            var result = GetData<string>(request);
+            var result = GetData<string>(QueryLogisticsTradeInfo,request);
             return result;
         }
 
