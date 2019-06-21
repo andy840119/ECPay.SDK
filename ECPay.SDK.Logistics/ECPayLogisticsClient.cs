@@ -1,4 +1,6 @@
-﻿using ECPay.SDK.Logistics.Models;
+﻿using ECPay.SDK.Logistics.Helpers;
+using ECPay.SDK.Logistics.Models;
+using ECPay.SDK.Logistics.Validator;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -59,19 +61,15 @@ namespace ECPay.SDK.Logistics
             }
         }
 
-        protected void ApplySettingToRequest(BaseECPayLogisticsRequest request)
-        {
-            request.HashKey = _settings.HashKey;
-            request.HashIV = _settings.HashIV;
-            request.MerchantID = _settings.MerchantID;
-        }
-
         protected virtual T GetData<T>(string url,BaseECPayLogisticsRequest request)
         {
             ApplySettingToRequest(request);
 
-            /*
-            var httpContent = ParameterValidator.ValidateURLContent(distParameter, this.HashKey, this.HashIV);
+            //Check parameter valid
+            ValidatorChecker.ValidateParameter(request);
+
+            //converto request to form
+            var httpContent = HttptHelper.ConvertObjectToForm(request);
 
             //prepare
             _webClient.BaseAddress = new Uri(url);
@@ -88,9 +86,16 @@ namespace ECPay.SDK.Logistics
             {
                 response.ErrorMessage = httpResponse.Content.ReadAsStringAsync().Result;
             }
-            */
+            
 
             return default(T);
+        }
+
+        protected void ApplySettingToRequest(BaseECPayLogisticsRequest request)
+        {
+            request.HashKey = _settings.HashKey;
+            request.HashIV = _settings.HashIV;
+            request.MerchantID = _settings.MerchantID;
         }
 
         #endregion

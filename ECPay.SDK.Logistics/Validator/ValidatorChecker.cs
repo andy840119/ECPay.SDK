@@ -1,4 +1,5 @@
 ﻿using ECPay.SDK.Logistics.Enums;
+using ECPay.SDK.Logistics.Helpers;
 using ECPay.SDK.Logistics.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,19 @@ namespace ECPay.SDK.Logistics.Validator
 {
     public class ValidatorChecker
     {
+        #region Function
+
+        public static bool ValidateParameter(BaseECPayLogisticsRequest request)
+        {
+            var parameter = ModelHelper.ToDictionary(request);
+
+            //all the parameter shound be passed
+            return parameter.All(validateParameter);
+        }
+
+
+        #endregion
+
         #region Check Logic
 
         private static bool validateParameter(KeyValuePair<string, string> parameter)
