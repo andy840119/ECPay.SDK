@@ -23,7 +23,7 @@ namespace ECPay.SDK.Logistics.Helpers
             );
         }
 
-        public static T ToObject<T>(this IDictionary<string, object> source)
+        public static T ToObject<T>(this IDictionary<string, string> source)
         where T : class, new()
         {
             var someObject = new T();
