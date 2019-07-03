@@ -30,6 +30,8 @@ namespace ECPay.SDK.Logistics.Enums
         /// </summary>
         None,
 
+        #region Home
+
         /// <summary>
         /// 黑貓宅配(TCAT)
         /// </summary>
@@ -39,6 +41,10 @@ namespace ECPay.SDK.Logistics.Enums
         /// 宅配通(ECAN)
         /// </summary>
         ECAN,
+
+        #endregion
+
+        #region B2C
 
         /// <summary>
         /// 全家B2C(FAMI)
@@ -55,6 +61,10 @@ namespace ECPay.SDK.Logistics.Enums
         /// </summary>
         FAMIC2C,
 
+        #endregion
+
+        #region C2C
+
         /// <summary>
         /// 統一超商交貨便店到店C2C(UNIMARTC2C)
         /// </summary>
@@ -69,5 +79,7 @@ namespace ECPay.SDK.Logistics.Enums
         /// 萊爾富物流(B2C)
         /// </summary>
         HILIFE
+
+        #endregion
     }
 }

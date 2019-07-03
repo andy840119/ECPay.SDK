@@ -44,16 +44,6 @@ namespace ECPay.SDK.Logistics
             _webClient = new HttpClient();
 
             //Check setting before
-            CheckSetting(settings);
-            _settings = settings;
-        }
-
-        #endregion
-
-        #region Utilities
-
-        protected virtual void CheckSetting(ECPayLogisticsSettings settings)
-        {
             if (string.IsNullOrEmpty(settings.MerchantID) || settings.MerchantID.Length > 10)
             {
                 throw new Exception("MerchantID can't be null or length > 10!");
@@ -62,7 +52,13 @@ namespace ECPay.SDK.Logistics
             {
                 throw new Exception("HashKey or HashIV can't be null or empty!");
             }
+
+            _settings = settings;
         }
+
+        #endregion
+
+        #region Utilities
 
         /// <summary>
         /// 把預設結果 轉換成 Dictionary格式
@@ -107,7 +103,7 @@ namespace ECPay.SDK.Logistics
             return dictionary.ToObject<T>();
         }
 
-        protected virtual Response<T> GetData<T>(string url, BaseECPayLogisticsRequest request, Func<string, T> convert = null) 
+        protected virtual HttpResponseMessage GetResponse(string url, BaseECPayLogisticsRequest request)
         {
             ApplySettingToRequest(request);
 
@@ -124,23 +120,46 @@ namespace ECPay.SDK.Logistics
             //query
             HttpResponseMessage httpResponse = _webClient.PostAsync("", httpContent).Result;
 
+            return httpResponse;
+        }
+
+        protected virtual Response<T> GetData<T>(string url, BaseECPayLogisticsRequest request, Func<string, T> convert = null)
+            where T : class, new()
+        {
+            var httpResponse = GetResponse(url, request);
             var response = new Response<T>();
+
             if (httpResponse.IsSuccessStatusCode)
             {
                 //Prepare data
                 var stringData = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //apply data
-                if (typeof(string) == typeof(T))
-                {
-                    response.Data = (T)Convert.ChangeType(stringData, typeof(T)); ;
-                }
-                if(typeof(T).IsClass)
-                {
-                    response.Data = convert != null ? convert.Invoke(stringData) : ConvertResultToObject<T>(stringData);
-                }
+                response.Data = convert != null ? convert.Invoke(stringData) : ConvertResultToObject<T>(stringData);
                 response.IsSuccess = true;
-                
+            }
+            else
+            {
+                response.ErrorMessage = httpResponse.Content.ReadAsStringAsync().Result;
+            }
+
+            return response;
+        }
+
+        protected virtual Response<string> GetData(string url, BaseECPayLogisticsRequest request, Func<string, string> convert = null)
+        {
+            var httpResponse = GetResponse(url, request);
+            var response = new Response<string>();
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                //Prepare data
+                var stringData = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //apply data
+                response.Data = stringData;
+                response.IsSuccess = true;
+
             }
             else
             {
@@ -182,7 +201,7 @@ namespace ECPay.SDK.Logistics
 
         public Response<string> GetDisplayMap(DisplayMapRequest request)
         {
-            var result = GetData<string>(QueryLogisticsTradeInfo, request);
+            var result = GetData(QueryLogisticsTradeInfo, request);
             return result;
         }
 
