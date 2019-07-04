@@ -2,7 +2,7 @@
 
 namespace ECPay.SDK.Einvoice
 {
-    public class Class1
+    public class ECPayEinvoiceClient
     {
     }
 }
