@@ -1,4 +1,5 @@
-﻿using ECPay.SDK.Einvoice.Attributes;
+﻿using Ecpay.EInvoice.Integration.Models;
+using ECPay.SDK.Einvoice.Attributes;
 using ECPay.SDK.Einvoice.Helpers;
 using ECPay.SDK.Einvoice.Interface;
 using ECPay.SDK.Einvoice.Service;
@@ -19,21 +20,12 @@ using System.Web;
 
 namespace ECPay.SDK.Einvoice
 {
-    public class ECPayEinvoiceClient<T> : IDisposable where T : Iinvoice
+    public class ECPayEinvoiceClient : IDisposable 
     {
         #region Fields
 
         private readonly ECPayEinvoiceSettings _settings;
         private IApiUrlModel _iapi;
-
-        /// <summary>
-        /// 代入API的 Iinvoice 介面
-        /// </summary>
-        private Iinvoice _Iinv;
-
-        /// <summary>
-        /// 將輸入的物件各參數轉為 namevalue collection 字串
-        /// </summary>
         private string _parameters = string.Empty;
 
         /// <summary>
@@ -60,7 +52,8 @@ namespace ECPay.SDK.Einvoice
         /// </summary>
         /// <param name="obj">傳入需驗證的物件</param>
         /// <returns>回傳驗證後訊息</returns>
-        private string Validate(T obj)
+        private string Validate<T>(T obj)
+            where T : Iinvoice
         {
             StringBuilder Result = new StringBuilder();
             List<string> errList = new List<string>();
@@ -82,7 +75,8 @@ namespace ECPay.SDK.Einvoice
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        private void ObjectToNameValueCollection(T obj)
+        private void ObjectToNameValueCollection<T>(T obj)
+            where T : Iinvoice
         {
             Type elemType = obj.GetType();
             string value = string.Empty;
@@ -290,10 +284,9 @@ namespace ECPay.SDK.Einvoice
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public string post(T obj)
+        public string Post<T>(T obj)
+            where T : Iinvoice
         {
-            _Iinv = obj as Iinvoice;
-
             //先作驗證
             string Valid = Validate(obj);
 
@@ -304,18 +297,26 @@ namespace ECPay.SDK.Einvoice
             ObjectToNameValueCollection(obj);
 
             //取出API位置
-            ApiUrl url = _iapi.getlist().Where(p => p.invM == _Iinv.invM && p.env == _settings.Environment).FirstOrDefault();
+            ApiUrl url = _iapi.getlist().Where(p => p.invM == obj.invM && p.env == _settings.Environment).FirstOrDefault();
 
             //作壓碼字串
-            string checkmacvalue = BuildCheckMacValue(this._parameters);
+            string checkmacvalue = BuildCheckMacValue(_parameters);
 
             //組出實際傳送的字串
-            string urlstring = string.Format("{0}&{1}", this._parameters, "CheckMacValue=" + checkmacvalue);
+            string urlstring = string.Format("{0}&{1}", _parameters, "CheckMacValue=" + checkmacvalue);
 
             //執行api功能, 並取得回傳結果
             string result = ServerPost(urlstring, url.apiUrl);
 
             return validReturnString(result);
+        }
+
+        public R  Post<R,T>(T obj)
+            where R : ReturnBase 
+            where T : Iinvoice
+        {
+            var result = Post(obj);
+            return JsonConvert.DeserializeObject<R>(result);
         }
 
         /// <summary>

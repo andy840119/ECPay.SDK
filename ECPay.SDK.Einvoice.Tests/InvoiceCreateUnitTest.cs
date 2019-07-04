@@ -1,12 +1,8 @@
 ﻿using Ecpay.EInvoice.Integration.Models;
 using ECPay.SDK.Einvoice.Enums;
-using ECPay.SDK.Einvoice.Helpers;
 using ECPay.SDK.Einvoice.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ECPay.SDK.Einvoice.Tests
 {
@@ -14,7 +10,7 @@ namespace ECPay.SDK.Einvoice.Tests
     /// 開立發票
     /// </summary>
     [TestClass]
-    public class InvoiceCreateUnitTest : BaseUnitTest<InvoiceCreate>
+    public class InvoiceCreateUnitTest : BaseUnitTest
     {
         [TestMethod]
         public void TestInvoiceCreate()
@@ -38,7 +34,7 @@ namespace ECPay.SDK.Einvoice.Tests
             invc.CarruerNum = invc.CarruerNum.Replace('+', ' '); //依API說明,把+號換成空白
             //invc.TaxType = TaxTypeEnum.DutyFree;//課稅類別
             invc.SalesAmount = "300";//發票金額。含稅總金額。
-            invc.InvoiceRemark = "(qwrrg)";//備註
+            invc.InvoiceRemark = "(備註)";//備註
 
             invc.invType = TheWordTypeEnum.Normal;//發票字軌類別
             //invc.vat = VatEnum.No;//商品單價是否含稅
@@ -52,8 +48,6 @@ namespace ECPay.SDK.Einvoice.Tests
                 ItemPrice = "100.1",//商品單價
                 //ItemTaxType = TaxTypeEnum.DutyFree//商品課稅別
                 ItemAmount = "100.1",//總金額
-
-
             });
             invc.Items.Add(new Item
             {
@@ -65,12 +59,8 @@ namespace ECPay.SDK.Einvoice.Tests
                 //ItemTaxType = TaxTypeEnum.DutyFree//商品課稅別
             });
 
-            //3. 執行API的回傳結果(JSON)字串 
-            var json = _client.post(invc);
-
-            //4. 解序列化，還原成物件使用
-            InvoiceCreateReturn obj = new InvoiceCreateReturn();
-            obj = JsonConvert.DeserializeObject<InvoiceCreateReturn>(json);
+            //3. 執行API的回傳結果
+            var obj = _client.Post<InvoiceCreateReturn, InvoiceCreate>(invc);
 
             //表示 CheckMacValue Error ，要檔下來
             Assert.AreNotEqual("10200073", obj.RtnCode);

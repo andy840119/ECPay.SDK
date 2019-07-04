@@ -6,11 +6,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ECPay.SDK.Einvoice.Tests
 {
     [TestClass]
-    public class BaseUnitTest<T> where T : Iinvoice
+    public class BaseUnitTest
     {
         protected ECPayEinvoiceSettings _setting;
 
-        protected ECPayEinvoiceClient<T> _client;
+        protected ECPayEinvoiceClient _client;
 
         [TestInitialize]
         public void Initialize()
@@ -25,7 +25,7 @@ namespace ECPay.SDK.Einvoice.Tests
             };
 
             //initialize client
-            _client = new ECPayEinvoiceClient<T>(_setting);
+            _client = new ECPayEinvoiceClient(_setting);
         }
     }
 }
