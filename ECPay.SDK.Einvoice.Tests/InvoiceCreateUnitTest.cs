@@ -34,7 +34,7 @@ namespace ECPay.SDK.Einvoice.Tests
             invc.CarruerNum = invc.CarruerNum.Replace('+', ' '); //依API說明,把+號換成空白
             //invc.TaxType = TaxTypeEnum.DutyFree;//課稅類別
             invc.SalesAmount = "300";//發票金額。含稅總金額。
-            invc.InvoiceRemark = "(備註)";//備註
+            invc.InvoiceRemark = "(qwrrg)";//備註
 
             invc.invType = TheWordTypeEnum.Normal;//發票字軌類別
             //invc.vat = VatEnum.No;//商品單價是否含稅
@@ -46,7 +46,7 @@ namespace ECPay.SDK.Einvoice.Tests
                 ItemCount = "1",//商品數量
                 ItemWord = "個",//單位
                 ItemPrice = "100.1",//商品單價
-                //ItemTaxType = TaxTypeEnum.DutyFree//商品課稅別
+                //ItemTaxType  =TaxTypeEnum.DutyFree//商品課稅別
                 ItemAmount = "100.1",//總金額
             });
             invc.Items.Add(new Item
@@ -62,8 +62,8 @@ namespace ECPay.SDK.Einvoice.Tests
             //3. 執行API的回傳結果
             var obj = _client.Post<InvoiceCreateReturn, InvoiceCreate>(invc);
 
-            //表示 CheckMacValue Error ，要檔下來
-            Assert.AreNotEqual("10200073", obj.RtnCode);
+            //表示成功
+            Assert.AreEqual("1", obj.RtnCode);
 
             //要有時間
             Assert.AreNotEqual("", obj.InvoiceDate);
