@@ -18,8 +18,9 @@ namespace ECPay.SDK.Einvoice.Tests
             //https://www.ecpay.com.tw/Content/files/ecpay_004.pdf
             _setting = new ECPayEinvoiceSettings
             {
-                HashKey = "5294y06JbISpM5x9",
-                HashIV = "v77hoKGq4kWxNNIS ",
+                //MerchantID = 2000132
+                HashKey = "ejCk326UnaZWKisg",
+                HashIV = "q9jcZX8Ib9LM8wYk ",
                 Environment = EnvironmentEnum.Stage
             };
 

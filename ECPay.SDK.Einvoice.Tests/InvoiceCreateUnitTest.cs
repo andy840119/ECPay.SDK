@@ -44,46 +44,45 @@ namespace ECPay.SDK.Einvoice.Tests
             //invc.vat = VatEnum.No;//商品單價是否含稅
 
             //2. 商品資訊(Item)的集合類別。
-            invc.Items.Add(new Item()
+            invc.Items.Add(new Item
             {
                 ItemName = "糧食",//商品名稱
                 ItemCount = "1",//商品數量
                 ItemWord = "個",//單位
                 ItemPrice = "100.1",//商品單價
-                //ItemTaxType  =TaxTypeEnum.DutyFree//商品課稅別
+                //ItemTaxType = TaxTypeEnum.DutyFree//商品課稅別
                 ItemAmount = "100.1",//總金額
 
 
             });
-            invc.Items.Add(new Item()
+            invc.Items.Add(new Item
             {
                 ItemName = "糧食",//商品名稱
                 ItemPrice = "200",//商品單價
                 ItemCount = "1",//商品數量
                 ItemWord = "個",//單位
                 ItemAmount = "200",//總金額
-                //ItemTaxType  =TaxTypeEnum.DutyFree//商品課稅別
+                //ItemTaxType = TaxTypeEnum.DutyFree//商品課稅別
             });
 
             //3. 執行API的回傳結果(JSON)字串 
             var json = _client.post(invc);
-            var temp = string.Empty;
 
-            bool check = JsonHelper.IsJson(json);
-            if (check)   //判斷是不是json格式
-            {
-                //4. 解序列化，還原成物件使用
-                InvoiceCreateReturn obj = new InvoiceCreateReturn();
-                obj = JsonConvert.DeserializeObject<InvoiceCreateReturn>(json);
+            //4. 解序列化，還原成物件使用
+            InvoiceCreateReturn obj = new InvoiceCreateReturn();
+            obj = JsonConvert.DeserializeObject<InvoiceCreateReturn>(json);
 
-                //TODO : check validator in here
-            }
-            else
-            {
-                temp = json;
+            //表示 CheckMacValue Error ，要檔下來
+            Assert.AreNotEqual("10200073", obj.RtnCode);
 
-                //TODO : check validator in here
-            }
+            //要有時間
+            Assert.AreNotEqual("", obj.InvoiceDate);
+
+            //要有號碼
+            Assert.AreNotEqual("", obj.InvoiceNumber);
+
+            //要有隨機碼
+            Assert.AreNotEqual("", obj.RandomNumber);
         }
     }
 }

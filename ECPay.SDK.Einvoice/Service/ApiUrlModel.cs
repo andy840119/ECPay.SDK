@@ -23,7 +23,7 @@ namespace ECPay.SDK.Einvoice.Service
         public List<ApiUrl> getlist()
         {
             var apiUrls = new List<ApiUrl>();//(List<ApiUrl>)cache.Get(cacheName);
-            if (apiUrls == null || apiUrls.Any())
+            if (apiUrls == null || !apiUrls.Any())
                 apiUrls = GetApiUrls();
             return apiUrls;
         }
