@@ -8,4 +8,40 @@
     <ProjectReference Include="..\ECPay.SDK\ECPay.SDK.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resource\ApiUrl.Dev.Resource.Designer.cs">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiUrl.Dev.Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resource\ApiUrl.Prod.Resource.Designer.cs">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiUrl.Prod.Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resource\ApiUrl.Stage.Resource.Designer.cs">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiUrl.Stage.Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resource\ApiUrl.Dev.Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApiUrl.Dev.Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resource\ApiUrl.Prod.Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApiUrl.Prod.Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resource\ApiUrl.Stage.Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApiUrl.Stage.Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
