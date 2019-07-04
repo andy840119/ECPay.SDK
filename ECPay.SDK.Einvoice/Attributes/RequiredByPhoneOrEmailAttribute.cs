@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace EECPay.SDK.Einvoice.Attributes
+namespace ECPay.SDK.Einvoice.Attributes
 {
     /// <summary>
     /// 依據手機或郵件檢查欄位則一填寫的類別
