@@ -135,18 +135,25 @@ namespace ECPay.SDK.Einvoice
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        private string BuildCheckMacValue(string param)
+        internal string BuildCheckMacValue(string param)
         {
             //排除不作驗證的字串
             string urlparams = RemoveIgnoreMacValues(param);
-            // 產生檢查碼。
-            string szCheckMacValue = String.Empty;
-            szCheckMacValue = String.Format("HashKey={0}&{1}&HashIV={2}", _settings.HashKey, urlparams, _settings.HashIV);
-            //saveLog("傳送字串Encode前:" + szCheckMacValue);
+
+            //2. 參數最前面加上 HashKey、最後面加上 HashIV
+            string szCheckMacValue = string.Empty;
+            szCheckMacValue = string.Format("HashKey={0}&{1}&HashIV={2}", _settings.HashKey, urlparams, _settings.HashIV);
+
+            //3. 將整串字串進行 URL encode
+            //4. 轉為小寫
             szCheckMacValue = HttpUtility.UrlEncode(szCheckMacValue).ToLower();
-            //saveLog("傳送字串Encode後:" + szCheckMacValue);
+
+            //5. 依 URLEncode 轉換表更換字元，在.net環境下不需要實作
+            //6. 以 MD5 加密方式來產生雜凑值
+            //7. 再轉大寫產生 CheckMacValue
             szCheckMacValue = MD5Encoder.Encrypt(szCheckMacValue);
-            return szCheckMacValue;
+            //轉換成大寫
+            return szCheckMacValue.ToUpper();
         }
 
         /// <summary>
@@ -267,7 +274,7 @@ namespace ECPay.SDK.Einvoice
             fileContent.Append("Log建立時間:").Append(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")).AppendLine();
             fileContent.AppendLine();
 
-            System.IO.File.AppendAllText(fileName, fileContent.ToString());
+            File.AppendAllText(fileName, fileContent.ToString());
         }
 
         private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
@@ -287,6 +294,9 @@ namespace ECPay.SDK.Einvoice
         public string Post<T>(T obj)
             where T : Iinvoice
         {
+            //清除掉之前的參數
+            _parameters = string.Empty;
+
             //先作驗證
             string Valid = Validate(obj);
 
@@ -303,11 +313,12 @@ namespace ECPay.SDK.Einvoice
             string checkmacvalue = BuildCheckMacValue(_parameters);
 
             //組出實際傳送的字串
-            string urlstring = string.Format("{0}&{1}", _parameters, "CheckMacValue=" + checkmacvalue);
+            string urlstring = string.Format("{0}&CheckMacValue={1}", _parameters, checkmacvalue);
 
             //執行api功能, 並取得回傳結果
             string result = ServerPost(urlstring, url.apiUrl);
 
+            //回傳
             return validReturnString(result);
         }
 
@@ -316,6 +327,8 @@ namespace ECPay.SDK.Einvoice
             where T : Iinvoice
         {
             var result = Post(obj);
+
+            //轉換成json格式
             return JsonConvert.DeserializeObject<R>(result);
         }
 
