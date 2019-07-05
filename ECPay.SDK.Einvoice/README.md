@@ -54,7 +54,7 @@ Assert.AreEqual("1", obj.RtnCode);
 
 ## 單元測試
 
-[ECPay.SDK.Einvoice.Tests](../ECPay.SDK.Einvoice.Test)
+[ECPay.SDK.Einvoice.Tests](../ECPay.SDK.Einvoice.Tests)
 
 ## 官網
 
