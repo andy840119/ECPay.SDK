@@ -12,11 +12,11 @@
 
 ## 目前實作項目
 
-[ECPay.SDK.Einvoice(開立發票)](ECPay.SDK.Einvoice/README.md)
+[ECPay.SDK.Einvoice(開立發票)](ECPay.SDK.Einvoice/)
 
 ## 尚未時做項目(TODO)
 
-[ECPay.SDK.Logistics(國內物流)](ECPay.SDK.Logistics/README.md)
+[ECPay.SDK.Logistics(國內物流)](ECPay.SDK.Logistics/)
 
 其它沒有列在上面的項目
 
