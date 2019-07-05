@@ -4,7 +4,7 @@
 
 套件 : 
 
-ECPay.SDK.Einvoice
+[ECPay.SDK.Einvoice](../ECPay.SDK.Einvoice)
 
 ## 目前完成的測試 : 
 
