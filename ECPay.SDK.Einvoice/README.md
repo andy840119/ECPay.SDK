@@ -15,5 +15,5 @@ https://www.ecpay.com.tw/Content/files/ecpay_004.pdf
 
 ## 官方SDK
 
-https://github.com/andy840119/Invoice_Net
+https://github.com/ECPay/Invoice_Net
 

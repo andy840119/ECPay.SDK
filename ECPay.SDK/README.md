@@ -6,3 +6,7 @@
 所有附加套件的共同會使用到的基礎套件
 
 在安裝其它套件時會一併被安裝
+
+## 官網
+
+https://www.ecpay.com.tw/Service/API_Dwnld
