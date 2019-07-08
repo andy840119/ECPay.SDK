@@ -14,7 +14,6 @@ ECPay開立發票用的套件
 開立發票 :
 
 ```csharp
-
 //1. 準備發票
 var invc = new InvoiceCreate
 {
@@ -51,7 +50,6 @@ var result = client.Post<InvoiceCreateReturn, InvoiceCreate>(invc);
 
 //6. 如果回傳代碼是1，表示成功
 Assert.AreEqual("1", obj.RtnCode);
-
 ```
 
 更多範例可以查看單元測試

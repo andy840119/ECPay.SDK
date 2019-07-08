@@ -3,6 +3,10 @@
 ECPay支付套件
 目前尚未完成
 
+## 單元測試
+
+[ECPay.SDK.Payment.Tests](../ECPay.SDK.Payment.Tests)
+
 ## 官網
 
 https://www.ecpay.com.tw/Service/API_Dwnld

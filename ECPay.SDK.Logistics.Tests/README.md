@@ -4,7 +4,7 @@
 
 套件 : 
 
-ECPay.SDK.Logistics
+[ECPay.SDK.Logistics](../ECPay.SDK.Logistics)
 
 ## 目前完成的測試 : 
 
