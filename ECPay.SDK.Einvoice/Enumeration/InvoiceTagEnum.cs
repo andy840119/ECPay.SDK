@@ -1,6 +1,6 @@
 ﻿using ECPay.SDK.Einvoice.Attributes;
 
-namespace ECPay.SDK.Einvoice.Enums
+namespace ECPay.SDK.Einvoice.Enumeration
 {
     /// <summary>
     /// 發送內容類型

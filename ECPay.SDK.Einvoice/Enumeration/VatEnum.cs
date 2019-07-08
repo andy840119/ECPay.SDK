@@ -1,4 +1,4 @@
-﻿namespace ECPay.SDK.Einvoice.Enums
+﻿namespace ECPay.SDK.Einvoice.Enumeration
 {
     /// <summary>
     /// 商品單價是否含稅

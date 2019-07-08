@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ECPay.SDK.Logistics.Enums
+﻿namespace ECPay.SDK.Logistics.Enumeration
 {
     /// <summary>
     /// 距離

@@ -1,4 +1,4 @@
-﻿namespace Ecpay.EInvoice.Integration.Models
+﻿namespace ECPay.SDK.Einvoice.Models
 {
     /// <summary>
     /// 付款完成觸發或延遲開立發票回傳Model

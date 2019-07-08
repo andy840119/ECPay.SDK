@@ -1,3 +1,4 @@
+using ECPay.SDK.Logistics.Settings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ECPay.SDK.Logistics.Tests

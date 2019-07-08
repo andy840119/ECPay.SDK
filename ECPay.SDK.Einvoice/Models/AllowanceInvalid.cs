@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using ECPay.SDK.Einvoice.Attributes;
-using ECPay.SDK.Einvoice.Enums;
+using ECPay.SDK.Einvoice.Enumeration;
 using ECPay.SDK.Einvoice.Interface;
 
-namespace EECPay.SDK.Einvoice.Models
+namespace ECPay.SDK.Einvoice.Models
 {
     /// <summary>
     /// 折讓作廢
@@ -20,7 +20,7 @@ namespace EECPay.SDK.Einvoice.Models
         /// <summary>
         /// 發票類別(自動產生)
         /// </summary>
-        [NonProcessValueAttribute]
+        [NonProcessValue]
         InvoiceMethodEnum Iinvoice.invM
         {
             get { return InvoiceMethodEnum.AllowanceInvalid; }

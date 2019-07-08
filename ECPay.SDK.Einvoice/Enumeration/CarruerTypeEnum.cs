@@ -1,6 +1,6 @@
 ﻿using ECPay.SDK.Einvoice.Attributes;
 
-namespace ECPay.SDK.Einvoice.Enums
+namespace ECPay.SDK.Einvoice.Enumeration
 {
     public enum CarruerTypeEnum : int
     {

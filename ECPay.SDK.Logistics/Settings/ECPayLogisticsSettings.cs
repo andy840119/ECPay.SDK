@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ECPay.SDK.Logistics
+﻿namespace ECPay.SDK.Logistics.Settings
 {
     public class ECPayLogisticsSettings : IECPayLogisticsSettings
     {

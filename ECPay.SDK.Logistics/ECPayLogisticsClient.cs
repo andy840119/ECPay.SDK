@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
+using ECPay.SDK.Logistics.Settings;
 
 namespace ECPay.SDK.Logistics
 {

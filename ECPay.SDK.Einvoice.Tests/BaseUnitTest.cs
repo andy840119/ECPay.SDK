@@ -1,5 +1,5 @@
+using ECPay.SDK.Einvoice.Enumeration;
 using ECPay.SDK.Einvoice.Settings;
-using ECPay.SDK.Einvoice.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ECPay.SDK.Einvoice.Tests
