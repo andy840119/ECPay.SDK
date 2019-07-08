@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ECPay.SDK.Einvoice.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -41,6 +39,8 @@ namespace ECPay.SDK.Einvoice.Tests
             //單一項目價格
             Assert.AreEqual("100|200", response.ItemPrice);
 
+            //隨機碼
+            Assert.AreEqual("4988", response.IIS_Random_Number);
         }
     }
 }
