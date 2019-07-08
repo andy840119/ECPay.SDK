@@ -10,4 +10,11 @@
     <Version>0.0.1-preview</Version>
   </PropertyGroup>
 
+  <!--將專案內internal物件授權給以下三個專案使用-->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).Einvoice</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
 </Project>

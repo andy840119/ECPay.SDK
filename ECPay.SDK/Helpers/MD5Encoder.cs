@@ -15,10 +15,10 @@ namespace ECPay.SDK.Einvoice.Helpers
             Crypto = new MD5CryptoServiceProvider();
         }
 
-        public static string Encrypt(string originalString)
+        internal static string Encrypt(string originalString)
         {
             byte[] byValue = Encoding.UTF8.GetBytes(originalString);
-            byte[] byHash = MD5Encoder.Crypto.ComputeHash(byValue);
+            byte[] byHash = Crypto.ComputeHash(byValue);
 
             StringBuilder stringBuilder = new StringBuilder();
 
