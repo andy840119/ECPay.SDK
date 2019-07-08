@@ -19,8 +19,6 @@
 [ECPay.SDK.Logistics(國內物流)](ECPay.SDK.Logistics/)
 
 [ECPay.SDK.Payment(支付)](ECPay.SDK.Payment/)
-
-其它沒有列在上面的項目
  
 ## 官網
 
