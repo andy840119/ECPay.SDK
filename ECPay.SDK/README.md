@@ -7,6 +7,10 @@
 
 在安裝其它套件時會一併被安裝
 
+## 套件連結
+
+[Nuget](https://www.nuget.org/packages/ECPay.SDK)
+
 ## 官網
 
 https://www.ecpay.com.tw/Service/API_Dwnld

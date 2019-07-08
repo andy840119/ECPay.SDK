@@ -5,6 +5,10 @@
 
 ECPay開立發票用的套件
 
+## 套件連結
+
+[Nuget](https://www.nuget.org/packages/ECPay.SDK.Einvoice)
+
 ## 範例
 
 開立發票 :

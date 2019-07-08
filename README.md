@@ -14,12 +14,14 @@
 
 [ECPay.SDK.Einvoice(開立發票)](ECPay.SDK.Einvoice/)
 
-## 尚未時做項目(TODO)
+## 尚未實作項目(TODO)
 
 [ECPay.SDK.Logistics(國內物流)](ECPay.SDK.Logistics/)
 
-其它沒有列在上面的項目
+[ECPay.SDK.Payment(支付)](ECPay.SDK.Payment/)
 
+其它沒有列在上面的項目
+ 
 ## 官網
 
 https://www.ecpay.com.tw/Service/API_Dwnld
