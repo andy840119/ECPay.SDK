@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace ECPay.SDK.Einvoice.Helpers
+namespace ECPay.SDK.Helpers
 {
     internal class MD5Encoder
     {
@@ -12,13 +12,13 @@ namespace ECPay.SDK.Einvoice.Helpers
 
         static MD5Encoder()
         {
-            MD5Encoder.Crypto = new MD5CryptoServiceProvider();
+            Crypto = new MD5CryptoServiceProvider();
         }
 
-        public static string Encrypt(string originalString)
+        internal static string Encrypt(string originalString)
         {
             byte[] byValue = Encoding.UTF8.GetBytes(originalString);
-            byte[] byHash = MD5Encoder.Crypto.ComputeHash(byValue);
+            byte[] byHash = Crypto.ComputeHash(byValue);
 
             StringBuilder stringBuilder = new StringBuilder();
 

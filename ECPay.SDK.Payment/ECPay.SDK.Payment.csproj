@@ -4,17 +4,24 @@
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  
+
   <PropertyGroup Label="Nuget">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.0.1-preview</Version>
   </PropertyGroup>
 
-  <!--將專案內internal物件授權給以下三個專案使用-->
   <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>$(AssemblyName).Einvoice</_Parameter1>
-    </AssemblyAttribute>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ECPay.SDK\ECPay.SDK.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  
 </Project>

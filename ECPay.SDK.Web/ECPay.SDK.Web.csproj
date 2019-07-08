@@ -13,8 +13,9 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\ECPay.SDK.Einvoice\ECPay.SDK.Einvoice.csproj" />
     <ProjectReference Include="..\ECPay.SDK.Logistics\ECPay.SDK.Logistics.csproj" />
-    <ProjectReference Include="..\ECPay.SDK\ECPay.SDK.csproj" />
+    <ProjectReference Include="..\ECPay.SDK.Payment\ECPay.SDK.Payment.csproj" />
   </ItemGroup>
 
 </Project>
