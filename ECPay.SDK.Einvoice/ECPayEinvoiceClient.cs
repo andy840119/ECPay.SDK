@@ -1,5 +1,4 @@
-﻿using Ecpay.EInvoice.Integration.Models;
-using ECPay.SDK.Einvoice.Attributes;
+﻿using ECPay.SDK.Einvoice.Attributes;
 using ECPay.SDK.Einvoice.Helpers;
 using ECPay.SDK.Einvoice.Interface;
 using ECPay.SDK.Einvoice.Service;
@@ -17,6 +16,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using ECPay.SDK.Einvoice.Models;
 using ECPay.SDK.Helpers;
 
 namespace ECPay.SDK.Einvoice

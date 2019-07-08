@@ -1,8 +1,7 @@
-﻿using Ecpay.EInvoice.Integration.Models;
-using ECPay.SDK.Einvoice.Enums;
-using ECPay.SDK.Einvoice.Models;
+﻿using ECPay.SDK.Einvoice.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using ECPay.SDK.Einvoice.Enumeration;
 
 namespace ECPay.SDK.Einvoice.Tests
 {

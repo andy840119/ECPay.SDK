@@ -1,4 +1,4 @@
-﻿namespace ECPay.SDK.Einvoice.Enums
+﻿namespace ECPay.SDK.Einvoice.Enumeration
 {
     /// <summary>
     /// 延遲註記

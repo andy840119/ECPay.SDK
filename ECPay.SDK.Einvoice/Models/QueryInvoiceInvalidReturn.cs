@@ -1,4 +1,4 @@
-﻿namespace Ecpay.EInvoice.Integration.Models
+﻿namespace ECPay.SDK.Einvoice.Models
 {
     /// <summary>
     /// 查詢作廢發票回傳Model

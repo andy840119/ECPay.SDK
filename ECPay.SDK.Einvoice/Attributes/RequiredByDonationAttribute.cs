@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using ECPay.SDK.Einvoice.Enums;
+using ECPay.SDK.Einvoice.Enumeration;
 
 namespace ECPay.SDK.Einvoice.Attributes
 {

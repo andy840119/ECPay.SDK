@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
-using ECPay.SDK.Einvoice.Enums;
+using ECPay.SDK.Einvoice.Enumeration;
 
 namespace ECPay.SDK.Einvoice.Attributes
 {

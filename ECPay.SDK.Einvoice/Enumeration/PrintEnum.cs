@@ -1,4 +1,4 @@
-﻿namespace ECPay.SDK.Einvoice.Enums
+﻿namespace ECPay.SDK.Einvoice.Enumeration
 {
     /// <summary>
     /// 是否列印。

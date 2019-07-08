@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using ECPay.SDK.Einvoice.Enumeration;
 //using System.Runtime.Caching;
-using ECPay.SDK.Einvoice.Enums;
 using ECPay.SDK.Einvoice.Interface;
 using ECPay.SDK.Einvoice.Resource;
 

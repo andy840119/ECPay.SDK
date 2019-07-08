@@ -1,4 +1,4 @@
-﻿namespace Ecpay.EInvoice.Integration.Models
+﻿namespace ECPay.SDK.Einvoice.Models
 {
     public abstract class ReturnBase
     {

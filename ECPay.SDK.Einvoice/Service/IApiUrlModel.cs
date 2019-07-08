@@ -1,5 +1,5 @@
-﻿using ECPay.SDK.Einvoice.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ECPay.SDK.Einvoice.Enumeration;
 
 namespace ECPay.SDK.Einvoice.Service
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using ECPay.SDK.Einvoice.Attributes;
-using ECPay.SDK.Einvoice.Enums;
+using ECPay.SDK.Einvoice.Enumeration;
 using ECPay.SDK.Einvoice.Interface;
 
-namespace Ecpay.EInvoice.Integration.Models
+namespace ECPay.SDK.Einvoice.Models
 {
     /// <summary>
     ///  EC Gateway - inv - ECBank or ECPay 付款完成觸發開立發票功能。 新版
@@ -19,7 +19,7 @@ namespace Ecpay.EInvoice.Integration.Models
         /// <summary>
         /// 發票類別(自動產生)
         /// </summary>
-        [NonProcessValueAttribute]
+        [NonProcessValue]
         InvoiceMethodEnum Iinvoice.invM
         {
             get { return InvoiceMethodEnum.InvoiceTrigger; }

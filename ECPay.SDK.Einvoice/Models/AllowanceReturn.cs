@@ -1,4 +1,4 @@
-﻿namespace Ecpay.EInvoice.Integration.Models
+﻿namespace ECPay.SDK.Einvoice.Models
 {
     /// <summary>
     /// 開立折讓回傳Model

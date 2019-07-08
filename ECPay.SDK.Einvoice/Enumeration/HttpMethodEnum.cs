@@ -1,4 +1,4 @@
-﻿namespace ECPay.SDK.Einvoice.Enums
+﻿namespace ECPay.SDK.Einvoice.Enumeration
 {
     /// <summary>
     /// 傳遞服務的方法。

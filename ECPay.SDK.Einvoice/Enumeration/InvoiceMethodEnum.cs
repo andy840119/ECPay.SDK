@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ECPay.SDK.Einvoice.Enums
+namespace ECPay.SDK.Einvoice.Enumeration
 {
     /// <summary>
     /// 發票方法

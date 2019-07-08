@@ -1,4 +1,4 @@
-﻿using ECPay.SDK.Einvoice.Enums;
+﻿using ECPay.SDK.Einvoice.Enumeration;
 
 namespace ECPay.SDK.Einvoice.Interface
 {
