@@ -16,15 +16,20 @@ namespace ECPay.Payment.Integration
         /// 處理 IO 資料的物件。
         /// </summary>
         private static StreamWriter swLogger = null;
+
         /// <summary>
         /// 記錄檔儲存路徑格式。
         /// </summary>
         private const string LOGGER_FULL_FILENAME = "~/App_Data/_allpay/{0}.log";
+
         /// <summary>
         /// 取得目前要使用的記錄檔檔名。
         /// </summary>
         private static string FileName
         {
+            get; set;
+            //TODO : implement
+            /*
             get {
                 string szFileName = String.Format(LOGGER_FULL_FILENAME, DateTime.Now.ToString("yyyyMMddHH"));
 
@@ -41,6 +46,7 @@ namespace ECPay.Payment.Integration
 
                 return szFileName;
             }
+            */
         }
         /// <summary>
         /// 記錄檔處理的靜態類別建構式。

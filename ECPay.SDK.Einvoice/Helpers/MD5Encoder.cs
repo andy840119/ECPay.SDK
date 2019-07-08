@@ -12,7 +12,7 @@ namespace ECPay.SDK.Einvoice.Helpers
 
         static MD5Encoder()
         {
-            MD5Encoder.Crypto = new MD5CryptoServiceProvider();
+            Crypto = new MD5CryptoServiceProvider();
         }
 
         public static string Encrypt(string originalString)
