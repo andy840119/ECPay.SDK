@@ -78,7 +78,7 @@ namespace ECPay.SDK.Einvoice.Tests
             });
 
             //3. 執行API的回傳結果
-            var response = _client.Post<InvoiceCreateReturn, InvoiceCreate>(invoice);
+            var response = Client.Post<InvoiceCreateReturn, InvoiceCreate>(invoice);
 
             //表示成功
             Assert.AreEqual("1", response.RtnCode);

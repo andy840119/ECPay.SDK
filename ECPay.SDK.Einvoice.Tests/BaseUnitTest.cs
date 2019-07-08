@@ -16,13 +16,13 @@ namespace ECPay.SDK.Einvoice.Tests
             Environment = EnvironmentEnum.Stage
         };
 
-        protected ECPayEinvoiceClient _client;
+        protected ECPayEinvoiceClient Client;
 
         [TestInitialize]
         public virtual void Initialize()
         {
             //initialize client
-            _client = new ECPayEinvoiceClient(Setting);
+            Client = new ECPayEinvoiceClient(Setting);
         }
     }
 }
