@@ -1,10 +1,10 @@
-﻿using ECPay.SDK.Logistics.Enums;
-using ECPay.SDK.Logistics.Helpers;
+﻿using ECPay.SDK.Logistics.Helpers;
 using ECPay.SDK.Logistics.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ECPay.SDK.Logistics.Enumeration;
 
 namespace ECPay.SDK.Logistics.Validator
 {
