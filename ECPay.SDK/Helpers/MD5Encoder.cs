@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace ECPay.SDK.Einvoice.Helpers
+namespace ECPay.SDK.Helpers
 {
     internal class MD5Encoder
     {
