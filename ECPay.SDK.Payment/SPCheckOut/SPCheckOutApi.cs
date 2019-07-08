@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using ECPay.SDK.Payment.Attributes;
 using ECPay.SDK.Payment.Enumeration;
+using ECPay.SDK.Payment.Extensions;
 using ECPay.SDK.Payment.Helpers;
 using ECPay.SDK.Payment.SPCheckOut.ExtendArguments;
 
