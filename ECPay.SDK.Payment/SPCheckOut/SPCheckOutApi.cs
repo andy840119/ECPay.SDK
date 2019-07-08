@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ECPay.Payment.Integration.Helper;
-using System.Web;
-using System.Security.Cryptography;
 using System.Net;
-using ECPay.Payment.Integration.SPCheckOut.ExtendArguments;
-using System.Reflection;
-using ECPay.Payment.Integration.Extensions;
-using ECPay.Payment.Integration.Attributes;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web;
+using ECPay.SDK.Payment.Attributes;
+using ECPay.SDK.Payment.Enumeration;
+using ECPay.SDK.Payment.Helpers;
+using ECPay.SDK.Payment.SPCheckOut.ExtendArguments;
 
-namespace ECPay.Payment.Integration.SPCheckOut
+namespace ECPay.SDK.Payment.SPCheckOut
 {
     /// <summary>
     /// 站內付API
@@ -111,13 +109,13 @@ namespace ECPay.Payment.Integration.SPCheckOut
             string ParameterString = _paraHelper.DictionaryToParamter(PostCollection).Replace("+", "%2B");
 
             // 紀錄記錄檔
-            Logger.WriteLine(String.Format("INFO   {0}  INPUT  SP.CkeckOutAip: {1}  ServiceURL:{2}",
+            Logger.Logger.WriteLine(String.Format("INFO   {0}  INPUT  SP.CkeckOutAip: {1}  ServiceURL:{2}",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), ParameterString, ServiceURL));
 
             string Result = http.DoRequestStrData(ServiceURL, ParameterString);
 
             // 紀錄記錄檔
-            Logger.WriteLine(String.Format("INFO   {0}  OUTPUT  SP.CkeckOutAip: {1}",
+            Logger.Logger.WriteLine(String.Format("INFO   {0}  OUTPUT  SP.CkeckOutAip: {1}",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Result));
 
             return Result;
@@ -171,7 +169,7 @@ namespace ECPay.Payment.Integration.SPCheckOut
         private void CalculateMacValue()
         {
             // 紀錄記錄檔
-            Logger.WriteLine(String.Format("INFO   {0}  INPUT  SP.GetKey_Para_IV: {1}",
+            Logger.Logger.WriteLine(String.Format("INFO   {0}  INPUT  SP.GetKey_Para_IV: {1}",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), GetKey_Para_IV()));
 
             string EncodeParameter = HttpUtility.UrlEncode(GetKey_Para_IV());

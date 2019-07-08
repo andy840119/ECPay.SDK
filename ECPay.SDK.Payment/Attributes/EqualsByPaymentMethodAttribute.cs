@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+using ECPay.SDK.Payment.Enumeration;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Attributes
 {
     /// <summary>
     /// 依據付款方式檢核比較欄位字串是否相符於付款方式的類別。

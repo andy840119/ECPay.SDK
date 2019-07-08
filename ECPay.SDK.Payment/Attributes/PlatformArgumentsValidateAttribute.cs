@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Attributes
 {
     /// <summary>
     /// 依據 PlatformID 檢核比較可填寫資料欄位的類別。

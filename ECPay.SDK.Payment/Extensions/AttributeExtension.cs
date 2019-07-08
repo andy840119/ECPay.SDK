@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 
-namespace ECPay.Payment.Integration.Extensions
+namespace ECPay.SDK.Payment.Extensions
 {
     public static class AttributeExtension
     {

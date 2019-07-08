@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using ECPay.SDK.Payment.Enumeration;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Attributes
 {
     /// <summary>
     /// 依據是否開立電子發票檢查該欄位是否必填的類別。

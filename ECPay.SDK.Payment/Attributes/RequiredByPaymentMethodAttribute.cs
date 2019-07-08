@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using ECPay.SDK.Payment.Enumeration;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Attributes
 {
     /// <summary>
     /// 依據付款方式檢查該欄位是否必填的類別。

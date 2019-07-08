@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using System.Reflection;
-using System.Web;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Logger
 {
     /// <summary>
     /// 記錄檔處理的靜態類別。

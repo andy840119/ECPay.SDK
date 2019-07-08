@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ECPay.Payment.Integration
+﻿namespace ECPay.SDK.Payment.Metadata
 {
     /// <summary>
     /// 履約保證介接參數的類別。

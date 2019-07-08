@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-
-namespace ECPay.Payment.Integration.SPCheckOut
+﻿namespace ECPay.SDK.Payment.SPCheckOut
 {
     /// <summary>
     /// SP_Token返回模組

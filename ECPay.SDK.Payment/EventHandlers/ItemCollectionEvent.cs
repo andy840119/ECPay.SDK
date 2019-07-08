@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.EventHandlers
 {
     /// <summary>
     /// 產品項目集合變更事件的 Handler。

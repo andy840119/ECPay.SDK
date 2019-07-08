@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Reflection;
+using ECPay.SDK.Payment.Enumeration;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Metadata
 {
     /// <summary>
     /// 

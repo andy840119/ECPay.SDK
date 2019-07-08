@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ECPay.Payment.Integration
+﻿namespace ECPay.SDK.Payment.Enumeration
 {
     /// <summary>
     /// 發票捐贈類型。

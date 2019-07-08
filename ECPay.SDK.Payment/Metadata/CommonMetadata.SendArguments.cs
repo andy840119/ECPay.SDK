@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 //using System.Linq.Expressions;
-using System.Reflection;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Metadata
 {
     /// <summary>
     /// 共用的介接參數的類別。

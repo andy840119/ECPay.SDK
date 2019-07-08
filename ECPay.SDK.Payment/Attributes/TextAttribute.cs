@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace ECPay.Payment.Integration.Attributes
+namespace ECPay.SDK.Payment.Attributes
 {
     [AttributeUsage(AttributeTargets.Field|AttributeTargets.Property)]
     public class TextAttribute : Attribute

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ECPay.Payment.Integration.Attributes;
+﻿using ECPay.SDK.Payment.Attributes;
 
-namespace ECPay.Payment.Integration.SPCheckOut
+namespace ECPay.SDK.Payment.Enumeration
 {
     public enum CreditPayType
     {

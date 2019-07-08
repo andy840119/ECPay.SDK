@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ECPay.Payment.Integration
+﻿namespace ECPay.SDK.Payment.Enumeration
 {
     /// <summary>
     /// 定期定額的週期種類。

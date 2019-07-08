@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+using ECPay.SDK.Payment.Attributes;
+using ECPay.SDK.Payment.Enumeration;
+using ECPay.SDK.Payment.EventHandlers;
 //using System.Linq.Expressions;
-using System.Reflection;
 
-namespace ECPay.Payment.Integration
+namespace ECPay.SDK.Payment.Metadata
 {
     /// <summary>
     /// 商品項目。

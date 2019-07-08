@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
+using ECPay.SDK.Payment.Enumeration;
 
-namespace ECPay.Payment.Integration.Helper
+namespace ECPay.SDK.Payment.Helpers
 {
     public class CharSetHelper
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ECPay.Payment.Integration
+﻿namespace ECPay.SDK.Payment.Models
 {
     /// <summary>
     /// 定期定額回傳的介接參數的類別。

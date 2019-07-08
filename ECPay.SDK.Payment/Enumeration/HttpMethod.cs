@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ECPay.Payment.Integration
+﻿namespace ECPay.SDK.Payment.Enumeration
 {
     /// <summary>
     /// 傳遞服務的方法。

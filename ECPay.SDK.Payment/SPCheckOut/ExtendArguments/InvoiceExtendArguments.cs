@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace ECPay.Payment.Integration.SPCheckOut.ExtendArguments
+namespace ECPay.SDK.Payment.SPCheckOut.ExtendArguments
 {
     /// <summary>
     ///電子發票擴展參數
