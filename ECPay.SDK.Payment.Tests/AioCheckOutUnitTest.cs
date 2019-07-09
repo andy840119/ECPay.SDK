@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ECPay.Payment.Integration;
 using ECPay.SDK.Payment.Enumeration;
 using ECPay.SDK.Payment.Metadata;
@@ -10,10 +9,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ECPay.SDK.Payment.Tests
 {
     [TestClass]
-    public class AioCheckOutUnitTest
+    public class AioCheckOutUnitTest : BaseUnitTest
     {
         /// <summary>
         /// 5.1
+        /// 訂單產生
         /// </summary>
         [TestMethod]
         public void TestAioCheckOut5_1()
