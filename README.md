@@ -1,5 +1,7 @@
 # ECPay.SDK
 
+[![CodeFactor](https://www.codefactor.io/repository/github/andy840119/ecpay.sdk/badge)](https://www.codefactor.io/repository/github/andy840119/ecpay.sdk)
+
 因為官方寫的SDK有夠~~醜~~...高雄，所以重構了一下
 
 ## 套件簡介
@@ -8,7 +10,7 @@
 
 套件使用方式除了官方的PDF和readme外，也可以參考unit-test
 
-本專案另外有使用codeFactor（TODO）和Appveyor(TODO)做專案Bad Smell檢查和自動測試
+本專案另外有使用codeFactor和Appveyor(TODO)做專案Bad Smell檢查和自動測試
 
 ## 目前實作項目
 
