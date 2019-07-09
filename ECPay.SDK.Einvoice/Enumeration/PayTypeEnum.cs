@@ -19,7 +19,6 @@ namespace ECPay.SDK.Einvoice.Enumeration
         [Text("ECPAY")]
         ECPAY = 2,
 
-        
         /// <summary>
         /// ECBank
         /// </summary>

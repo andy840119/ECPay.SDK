@@ -251,7 +251,6 @@ namespace ECPay.SDK.Einvoice.Models
         ///                       ‧若含二筆或以上的商品合計時，則以「|」符號區隔
         ///                       ‧含稅小計金額
         /// </summary>
-
         internal string ItemAmount => Items.ItemAmount;
 
         /// <summary>

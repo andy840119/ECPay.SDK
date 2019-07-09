@@ -56,8 +56,8 @@ namespace ECPay.SDK.Einvoice
         private string Validate<T>(T obj)
             where T : Iinvoice
         {
-            StringBuilder Result = new StringBuilder();
-            List<string> errList = new List<string>();
+            var result = new StringBuilder();
+            var errList = new List<string>();
 
             errList.AddRange(ServerValidator.Validate(obj));
 
@@ -65,10 +65,10 @@ namespace ECPay.SDK.Einvoice
             {
                 foreach (var item in errList)
                 {
-                    Result.Append(item.ToString() + " ");
+                    result.Append(item + " ");
                 }
             }
-            return Result.ToString();
+            return result.ToString();
         }
 
         /// <summary>
@@ -124,9 +124,9 @@ namespace ECPay.SDK.Einvoice
                     value = HttpUtility.UrlEncode(value);
 
                 if (string.IsNullOrEmpty(_parameters))
-                    _parameters = String.Format("{0}={1}", item.Name, value);
+                    _parameters = $"{item.Name}={value}";
                 else
-                    _parameters += String.Format("&{0}={1}", item.Name, value);
+                    _parameters += $"&{item.Name}={value}";
             }
         }
 
@@ -134,7 +134,7 @@ namespace ECPay.SDK.Einvoice
         /// 產生檢查碼。
         /// 並排除不作驗證的字串
         /// </summary>
-        /// <param name="parameters"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         internal string BuildCheckMacValue(string param)
         {
@@ -142,8 +142,7 @@ namespace ECPay.SDK.Einvoice
             string urlparams = RemoveIgnoreMacValues(param);
 
             //2. 參數最前面加上 HashKey、最後面加上 HashIV
-            string szCheckMacValue = string.Empty;
-            szCheckMacValue = string.Format("HashKey={0}&{1}&HashIV={2}", _settings.HashKey, urlparams, _settings.HashIV);
+            var szCheckMacValue = $"HashKey={_settings.HashKey}&{urlparams}&HashIV={_settings.HashIV}";
 
             //3. 將整串字串進行 URL encode
             //4. 轉為小寫
@@ -166,13 +165,14 @@ namespace ECPay.SDK.Einvoice
         {
             //整理回傳結果
             NameValueCollection nvc = HttpUtility.ParseQueryString(returnString);
+
             //取出結果及驗證碼
-            string RtnCode = nvc["RtnCode"].ToString();
-            string checkMacValue = nvc["CheckMacValue"];
+            var rtnCode = nvc["RtnCode"];
+            var checkMacValue = nvc["CheckMacValue"];
             //saveLog("結果:" + returnString);
 
             //回傳成功的資訊, 如果回覆成功就比對驗證碼確認資料正確
-            if (RtnCode == "1")
+            if (rtnCode == "1")
             {
                 string returnBuildCheckMacValue = BuildCheckMacValue(returnString);
                 //saveLog("自己產生的驗證字串:" + returnBuildCheckMacValue);
@@ -220,7 +220,7 @@ namespace ECPay.SDK.Einvoice
         /// <returns></returns>
         private string ServerPost(string parameters, string apiURL)
         {
-            string szResult = String.Empty;
+            string szResult;
             byte[] byContent = Encoding.UTF8.GetBytes(parameters);
 
             //saveLog("實際字串:" + parameters);
@@ -229,33 +229,28 @@ namespace ECPay.SDK.Einvoice
             {
                 webRequest.Credentials = CredentialCache.DefaultCredentials;
                 ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;// SecurityProtocolType.Tls1.2;
+
+                // SecurityProtocolType.Tls1.2;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
 
                 webRequest.ContentType = "application/x-www-form-urlencoded";
                 webRequest.Method = "POST";
                 webRequest.ContentLength = byContent.Length;
 
-                using (System.IO.Stream oStream = webRequest.GetRequestStream())
+                using (Stream oStream = webRequest.GetRequestStream())
                 {
                     oStream.Write(byContent, 0, byContent.Length); //Push it out there
                     oStream.Close();
                 }
 
-                WebResponse webResponse = webRequest.GetResponse();
+                using (var webResponse = webRequest.GetResponse())
                 {
-                    if (null != webResponse)
+                    using (StreamReader oReader = new StreamReader(webResponse.GetResponseStream() ?? throw new InvalidOperationException()))
                     {
-                        using (StreamReader oReader = new StreamReader(webResponse.GetResponseStream()))
-                        {
-                            szResult = oReader.ReadToEnd().Trim();
-                        }
+                        szResult = oReader.ReadToEnd().Trim();
                     }
-
                     webResponse.Close();
-                    webResponse = null;
                 }
-
-                webRequest = null;
             }
 
             return szResult;
@@ -264,8 +259,7 @@ namespace ECPay.SDK.Einvoice
         /// <summary>
         /// 紀錄參數 DeBug 用
         /// </summary>
-        /// <param name="requestForm"></param>
-        /// <param name="logType"></param>
+        /// <param name="str"></param>
         private void saveLog(string str)
         {
             string fileName = "c://" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
@@ -308,16 +302,16 @@ namespace ECPay.SDK.Einvoice
             ObjectToNameValueCollection(obj);
 
             //取出API位置
-            ApiUrl url = _iapi.getlist().Where(p => p.invM == obj.invM && p.env == _settings.Environment).FirstOrDefault();
+            ApiUrl url = _iapi.GetList().FirstOrDefault(p => p.invM == obj.invM && p.env == _settings.Environment);
 
             //作壓碼字串
-            string checkmacvalue = BuildCheckMacValue(_parameters);
+            string checkMacValue = BuildCheckMacValue(_parameters);
 
             //組出實際傳送的字串
-            string urlstring = string.Format("{0}&CheckMacValue={1}", _parameters, checkmacvalue);
+            string urlString = $"{_parameters}&CheckMacValue={checkMacValue}";
 
             //執行api功能, 並取得回傳結果
-            string result = ServerPost(urlstring, url.apiUrl);
+            string result = ServerPost(urlString, url?.apiUrl);
 
             //回傳
             return validReturnString(result);
