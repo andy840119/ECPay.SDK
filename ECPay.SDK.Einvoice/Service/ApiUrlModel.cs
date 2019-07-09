@@ -16,7 +16,7 @@ namespace ECPay.SDK.Einvoice.Service
         private string cacheName = "apiList";
         //private ObjectCache cache = MemoryCache.Default;
 
-        public List<ApiUrl> getlist()
+        public List<ApiUrl> GetList()
         {
             //var apiUrls = (List<ApiUrl>)cache.Get(cacheName);
             var apiUrls = new List<ApiUrl>();
@@ -35,7 +35,7 @@ namespace ECPay.SDK.Einvoice.Service
             foreach (DictionaryEntry entry in resourceSet)
             {
                 list.Add(
-                   new ApiUrl()
+                   new ApiUrl
                    {
                        apiUrl = entry.Value.ToString(),
                        env = EnvironmentEnum.Dev,
@@ -48,7 +48,7 @@ namespace ECPay.SDK.Einvoice.Service
             foreach (DictionaryEntry entry in resourceSet)
             {
                 list.Add(
-                   new ApiUrl()
+                   new ApiUrl
                    {
                        apiUrl = entry.Value.ToString(),
                        env = EnvironmentEnum.Stage,
@@ -61,7 +61,7 @@ namespace ECPay.SDK.Einvoice.Service
             foreach (DictionaryEntry entry in resourceSet)
             {
                 list.Add(
-                   new ApiUrl()
+                   new ApiUrl
                    {
                        apiUrl = entry.Value.ToString(),
                        env = EnvironmentEnum.Prod,

@@ -302,7 +302,7 @@ namespace ECPay.SDK.Einvoice
             ObjectToNameValueCollection(obj);
 
             //取出API位置
-            ApiUrl url = _iapi.getlist().FirstOrDefault(p => p.invM == obj.invM && p.env == _settings.Environment);
+            ApiUrl url = _iapi.GetList().FirstOrDefault(p => p.invM == obj.invM && p.env == _settings.Environment);
 
             //作壓碼字串
             string checkMacValue = BuildCheckMacValue(_parameters);

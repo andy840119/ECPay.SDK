@@ -5,7 +5,7 @@ namespace ECPay.SDK.Einvoice.Service
 {
     internal interface IApiUrlModel
     {
-        List<ApiUrl> getlist();
+        List<ApiUrl> GetList();
     }
 
     internal class ApiUrl
