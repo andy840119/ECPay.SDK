@@ -203,9 +203,10 @@ namespace ECPay.Payment.Integration
                 }
                 // 產生傳遞的參數與檢查碼。
                 Hashtable htParameters = new Hashtable();
-                string szChoosePayment = this.Send.ChoosePayment.ToString();
+                var szChoosePayment = Send.ChoosePayment;
                 string szParameters = String.Empty;
                 string szCheckMacValue = String.Empty;
+
                 // 取得並整理參數。
                 htParameters.Add("MerchantID", this.MerchantID);
                 htParameters.Add("MerchantTradeNo", this.Send.MerchantTradeNo);
@@ -215,7 +216,7 @@ namespace ECPay.Payment.Integration
                 htParameters.Add("TradeDesc", this.Send.TradeDesc);
                 htParameters.Add("ItemName", this.Send.ItemName);
                 htParameters.Add("ReturnURL", this.Send.ReturnURL);
-                htParameters.Add("ChoosePayment", szChoosePayment);
+                htParameters.Add("ChoosePayment", szChoosePayment.ToString());
                 htParameters.Add("ClientBackURL", this.Send.ClientBackURL);
                 htParameters.Add("ItemURL", this.Send.ItemURL);
                 htParameters.Add("Remark", this.Send.Remark);
@@ -261,13 +262,13 @@ namespace ECPay.Payment.Integration
                 if (!String.IsNullOrEmpty(this.Send.AllPayID)) htParameters.Add("AllPayID", this.Send.AllPayID);
                 if (!String.IsNullOrEmpty(this.Send.AccountID)) htParameters.Add("AccountID", this.Send.AccountID);
 
-                if (szChoosePayment == "ATM")
+                if (szChoosePayment == PaymentMethod.ATM)
                 {
                     htParameters.Add("ExpireDate", this.SendExtend.ExpireDate);
                     if (!String.IsNullOrEmpty(this.SendExtend.PaymentInfoURL)) htParameters.Add("PaymentInfoURL", this.SendExtend.PaymentInfoURL);
                     if (!String.IsNullOrEmpty(this.SendExtend.ClientRedirectURL)) htParameters.Add("ClientRedirectURL", this.SendExtend.ClientRedirectURL);
                 }
-                if (szChoosePayment == "CVS" || szChoosePayment == "BARCODE")
+                if (szChoosePayment == PaymentMethod.CVS || szChoosePayment == PaymentMethod.BARCODE)
                 {
                     if (this.SendExtend.StoreExpireDate.HasValue) htParameters.Add("StoreExpireDate", this.SendExtend.StoreExpireDate.Value);
                     if (!String.IsNullOrEmpty(this.SendExtend.Desc_1)) htParameters.Add("Desc_1", this.SendExtend.Desc_1);
@@ -279,7 +280,7 @@ namespace ECPay.Payment.Integration
                     if (!String.IsNullOrEmpty(this.SendExtend.ClientRedirectURL)) htParameters.Add("ClientRedirectURL", this.SendExtend.ClientRedirectURL);
                 }
               
-                if (szChoosePayment == "Credit" || szChoosePayment == "GooglePay" || szChoosePayment == "AndroidPay")
+                if (szChoosePayment == PaymentMethod.Credit || szChoosePayment == PaymentMethod.GooglePay || szChoosePayment == PaymentMethod.AndroidPay)
                 {
                     // 一般分期。
                     if (!String.IsNullOrEmpty(this.SendExtend.CreditInstallment)) htParameters.Add("CreditInstallment", this.SendExtend.CreditInstallment);
@@ -323,7 +324,7 @@ namespace ECPay.Payment.Integration
                     htParameters.Add("InvType", String.Format("{0:00}", (int)this.SendExtend.InvType));
                 }
                 // 當為 ALL 時，若屬性有值，還是必須傳遞的參數。
-                if (szChoosePayment == "ALL")
+                if (szChoosePayment == PaymentMethod.ALL)
                 {
                     // 信用卡選擇性參數。
                     if (!String.IsNullOrEmpty(this.SendExtend.CreditInstallment)) htParameters.Add("CreditInstallment", this.SendExtend.CreditInstallment);
