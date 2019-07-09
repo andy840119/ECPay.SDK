@@ -220,7 +220,7 @@ namespace ECPay.SDK.Einvoice
         /// <returns></returns>
         private string ServerPost(string parameters, string apiURL)
         {
-            string szResult = String.Empty;
+            string szResult;
             byte[] byContent = Encoding.UTF8.GetBytes(parameters);
 
             //saveLog("實際字串:" + parameters);
@@ -229,7 +229,9 @@ namespace ECPay.SDK.Einvoice
             {
                 webRequest.Credentials = CredentialCache.DefaultCredentials;
                 ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;// SecurityProtocolType.Tls1.2;
+
+                // SecurityProtocolType.Tls1.2;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
 
                 webRequest.ContentType = "application/x-www-form-urlencoded";
                 webRequest.Method = "POST";
@@ -257,8 +259,7 @@ namespace ECPay.SDK.Einvoice
         /// <summary>
         /// 紀錄參數 DeBug 用
         /// </summary>
-        /// <param name="requestForm"></param>
-        /// <param name="logType"></param>
+        /// <param name="str"></param>
         private void saveLog(string str)
         {
             string fileName = "c://" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
@@ -301,16 +302,16 @@ namespace ECPay.SDK.Einvoice
             ObjectToNameValueCollection(obj);
 
             //取出API位置
-            ApiUrl url = _iapi.getlist().Where(p => p.invM == obj.invM && p.env == _settings.Environment).FirstOrDefault();
+            ApiUrl url = _iapi.getlist().FirstOrDefault(p => p.invM == obj.invM && p.env == _settings.Environment);
 
             //作壓碼字串
-            string checkmacvalue = BuildCheckMacValue(_parameters);
+            string checkMacValue = BuildCheckMacValue(_parameters);
 
             //組出實際傳送的字串
-            string urlstring = string.Format("{0}&CheckMacValue={1}", _parameters, checkmacvalue);
+            string urlString = $"{_parameters}&CheckMacValue={checkMacValue}";
 
             //執行api功能, 並取得回傳結果
-            string result = ServerPost(urlstring, url.apiUrl);
+            string result = ServerPost(urlString, url?.apiUrl);
 
             //回傳
             return validReturnString(result);

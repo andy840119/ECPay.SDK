@@ -16,15 +16,13 @@ namespace ECPay.SDK.Einvoice.Service
         private string cacheName = "apiList";
         //private ObjectCache cache = MemoryCache.Default;
 
-        public ApiUrlModel()
-        {
-        }
-
         public List<ApiUrl> getlist()
         {
-            var apiUrls = new List<ApiUrl>();//(List<ApiUrl>)cache.Get(cacheName);
+            //var apiUrls = (List<ApiUrl>)cache.Get(cacheName);
+            var apiUrls = new List<ApiUrl>();
             if (apiUrls == null || !apiUrls.Any())
                 apiUrls = GetApiUrls();
+
             return apiUrls;
         }
 
