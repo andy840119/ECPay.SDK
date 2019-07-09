@@ -20,6 +20,9 @@ using ECPay.SDK.Payment.Logger;
 using ECPay.SDK.Payment.Metadata;
 using ECPay.SDK.Payment.Models;
 using ECPay.SDK.Payment.WCF;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Http;
 
 namespace ECPay.Payment.Integration
 {
@@ -717,10 +720,8 @@ namespace ECPay.Payment.Integration
                 if (this.ServiceMethod == HttpMethod.ServerPOST)
                 {
                     szFeedback = this.ServerPost(szParameters);
-                    // 重新整理取回的參數。
-                    JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
                     // 反序列化為物件。
-                    feedback = jsonSerializer.Deserialize<PeriodCreditCardTradeInfo>(szFeedback);
+                    feedback = JsonConvert.DeserializeObject<PeriodCreditCardTradeInfo>(szFeedback);
                 }
                 else
                 {
