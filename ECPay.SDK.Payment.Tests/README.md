@@ -18,8 +18,8 @@
 
 [5.4.信用卡定期定額訂單查詢](QueryCreditCardPeriodInfoUnitTest.cs)
 
-5.5.信用卡關帳／退刷／取消／放棄
+[5.5.信用卡關帳／退刷／取消／放棄](DoActionUnitTest.cs)
 
-5.6.廠商下載對帳媒體檔
+[5.6.廠商下載對帳媒體檔](TradeNoAioUnitTest.cs)
 
 常用全方位金流
