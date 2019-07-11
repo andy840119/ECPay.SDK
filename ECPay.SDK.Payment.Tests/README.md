@@ -16,7 +16,7 @@
 
 [5.3.訂單查詢](QueryTradeInfoUnitTest.cs)
 
-5.4.信用卡定期定額訂單查詢
+[5.4.信用卡定期定額訂單查詢](QueryCreditCardPeriodInfoUnitTest.cs)
 
 5.5.信用卡關帳／退刷／取消／放棄
 
