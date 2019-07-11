@@ -21,5 +21,3 @@
 [5.5.信用卡關帳／退刷／取消／放棄](DoActionUnitTest.cs)
 
 [5.6.廠商下載對帳媒體檔](TradeNoAioUnitTest.cs)
-
-常用全方位金流
