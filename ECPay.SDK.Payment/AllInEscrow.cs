@@ -8,10 +8,12 @@ using System.Web.UI;
 using System.Web;
 using System.IO;
 using System.Runtime.InteropServices;
+using ECPay.SDK.Helpers;
 using ECPay.SDK.Payment.Helpers;
 using ECPay.SDK.Payment.Logger;
 using ECPay.SDK.Payment.Metadata;
 using ECPay.SDK.Payment.WCF;
+using ECPay.SDK.Payment.Enumeration;
 
 namespace ECPay.Payment.Integration
 {
