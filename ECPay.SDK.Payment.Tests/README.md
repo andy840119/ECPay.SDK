@@ -14,7 +14,7 @@
 
 [5.2.2、5.2.3取號結果通知](ATMFeedbackUnitTest.cs)
 
-5.3.訂單查詢
+[5.3.訂單查詢](QueryTradeInfoUnitTest.cs)
 
 5.4.信用卡定期定額訂單查詢
 
