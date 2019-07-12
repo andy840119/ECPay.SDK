@@ -15,6 +15,9 @@ namespace ECPay.SDK.Einvoice.Tests
             Environment = EnvironmentEnum.Stage
         };
 
+        /// <summary>
+        /// 測試MD5有沒有計算錯誤
+        /// </summary>
         [TestMethod]
         public void TestCheckMacFunction()
         {

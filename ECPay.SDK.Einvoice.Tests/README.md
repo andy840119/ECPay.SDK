@@ -10,7 +10,7 @@
 
 [04.一般開立發票](InvoiceCreateUnitTest.cs)
 
-05.延遲或觸發開立發票
+[05.延遲或觸發開立發票](DelayIssueUnitTest.cs)
 
 06.開立折讓
 

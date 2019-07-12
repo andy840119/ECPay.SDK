@@ -4,12 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ECPay.SDK.Einvoice.Tests
 {
-    /// <summary>
-    /// 查詢發票
-    /// </summary>
     [TestClass]
     public class InvoiceSearchUnitTest : BaseUnitTest
     {
+        /// <summary>
+        /// 查詢發票
+        /// </summary>
         [TestMethod]
         public void TestInvoiceSearch()
         {
