@@ -14,7 +14,9 @@ namespace ECPay.SDK.Einvoice.Attributes
         /// <summary>
         /// 依據載具類型檢查該欄位是否必填的類別建構式。
         /// </summary>
-        public RequiredByCarruerTypeAttribute() : base() { }
+        public RequiredByCarruerTypeAttribute() : base()
+        {
+        }
 
         /// <summary>
         /// 是否檢核通過。
@@ -25,7 +27,7 @@ namespace ECPay.SDK.Einvoice.Attributes
         {
             PropertyDescriptorCollection pdcProperties = null;
 
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。
@@ -56,7 +58,8 @@ namespace ECPay.SDK.Einvoice.Attributes
 
                 oNeedCheckedValue = pdcProperties.Find("carruerType", false).GetValue(oSourceComponent);
 
-                if (oNeedCheckedValue.Equals(CarruerTypeEnum.NaturalPersonEvidence) || oNeedCheckedValue.Equals(CarruerTypeEnum.PhoneBarcode))
+                if (oNeedCheckedValue.Equals(CarruerTypeEnum.NaturalPersonEvidence) ||
+                    oNeedCheckedValue.Equals(CarruerTypeEnum.PhoneBarcode))
                 {
                     return base.IsValid(oPropertyValue);
                 }
@@ -70,7 +73,9 @@ namespace ECPay.SDK.Einvoice.Attributes
 
                 oNeedCheckedValue = pdcProperties.Find("carruerType", false).GetValue(oSourceComponent);
 
-                if ((oNeedCheckedValue.Equals(CarruerTypeEnum.Member) || oNeedCheckedValue.Equals(CarruerTypeEnum.NaturalPersonEvidence)) && !string.IsNullOrEmpty(Convert.ToString(oPropertyValue)))
+                if ((oNeedCheckedValue.Equals(CarruerTypeEnum.Member) ||
+                     oNeedCheckedValue.Equals(CarruerTypeEnum.NaturalPersonEvidence)) &&
+                    !string.IsNullOrEmpty(Convert.ToString(oPropertyValue)))
                 {
                     return false;
                 }

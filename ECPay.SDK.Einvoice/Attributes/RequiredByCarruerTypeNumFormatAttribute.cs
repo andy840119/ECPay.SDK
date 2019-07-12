@@ -15,7 +15,9 @@ namespace ECPay.SDK.Einvoice.Attributes
         /// <summary>
         /// 依據載具類型檢查該欄位是否必填的類別建構式。
         /// </summary>
-        public RequiredByCarruerTypeNumFormatAttribute() : base() { }
+        public RequiredByCarruerTypeNumFormatAttribute() : base()
+        {
+        }
 
         /// <summary>
         /// 是否檢核通過。
@@ -26,7 +28,7 @@ namespace ECPay.SDK.Einvoice.Attributes
         {
             PropertyDescriptorCollection pdcProperties = null;
 
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。
@@ -44,11 +46,14 @@ namespace ECPay.SDK.Einvoice.Attributes
 
                 oNeedCheckedValue = pdcProperties.Find("carruerType", false).GetValue(oSourceComponent);
 
-                if (oNeedCheckedValue.Equals(CarruerTypeEnum.NaturalPersonEvidence) && !Regex.IsMatch(Convert.ToString(oPropertyValue), @"^[A-Za-z]{2}[0-9]{14}$"))
+                if (oNeedCheckedValue.Equals(CarruerTypeEnum.NaturalPersonEvidence) &&
+                    !Regex.IsMatch(Convert.ToString(oPropertyValue), @"^[A-Za-z]{2}[0-9]{14}$"))
                 {
                     return false;
                 }
-                if (oNeedCheckedValue.Equals(CarruerTypeEnum.PhoneBarcode) && !Regex.IsMatch(Convert.ToString(oPropertyValue), @"^/[+-. 0-9a-zA-Z]{7}$"))
+
+                if (oNeedCheckedValue.Equals(CarruerTypeEnum.PhoneBarcode) &&
+                    !Regex.IsMatch(Convert.ToString(oPropertyValue), @"^/[+-. 0-9a-zA-Z]{7}$"))
                 {
                     return false;
                 }

@@ -35,25 +35,26 @@ namespace ECPay.SDK.Einvoice.Service
             foreach (DictionaryEntry entry in resourceSet)
             {
                 list.Add(
-                   new ApiUrl
-                   {
-                       apiUrl = entry.Value.ToString(),
-                       env = EnvironmentEnum.Dev,
-                       invM = (InvoiceMethodEnum)Enum.Parse(typeof(InvoiceMethodEnum), entry.Key.ToString())
-                   }
+                    new ApiUrl
+                    {
+                        apiUrl = entry.Value.ToString(),
+                        env = EnvironmentEnum.Dev,
+                        invM = (InvoiceMethodEnum) Enum.Parse(typeof(InvoiceMethodEnum), entry.Key.ToString())
+                    }
                 );
             }
 
-            resourceSet = ApiUrl_Stage_Resource.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            resourceSet =
+                ApiUrl_Stage_Resource.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
             foreach (DictionaryEntry entry in resourceSet)
             {
                 list.Add(
-                   new ApiUrl
-                   {
-                       apiUrl = entry.Value.ToString(),
-                       env = EnvironmentEnum.Stage,
-                       invM = (InvoiceMethodEnum)Enum.Parse(typeof(InvoiceMethodEnum), entry.Key.ToString())
-                   }
+                    new ApiUrl
+                    {
+                        apiUrl = entry.Value.ToString(),
+                        env = EnvironmentEnum.Stage,
+                        invM = (InvoiceMethodEnum) Enum.Parse(typeof(InvoiceMethodEnum), entry.Key.ToString())
+                    }
                 );
             }
 
@@ -61,12 +62,12 @@ namespace ECPay.SDK.Einvoice.Service
             foreach (DictionaryEntry entry in resourceSet)
             {
                 list.Add(
-                   new ApiUrl
-                   {
-                       apiUrl = entry.Value.ToString(),
-                       env = EnvironmentEnum.Prod,
-                       invM = (InvoiceMethodEnum)Enum.Parse(typeof(InvoiceMethodEnum), entry.Key.ToString())
-                   }
+                    new ApiUrl
+                    {
+                        apiUrl = entry.Value.ToString(),
+                        env = EnvironmentEnum.Prod,
+                        invM = (InvoiceMethodEnum) Enum.Parse(typeof(InvoiceMethodEnum), entry.Key.ToString())
+                    }
                 );
             }
             //CacheItemPolicy policy = new CacheItemPolicy();

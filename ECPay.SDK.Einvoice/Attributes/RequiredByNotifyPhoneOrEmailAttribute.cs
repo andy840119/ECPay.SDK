@@ -20,7 +20,7 @@ namespace ECPay.SDK.Einvoice.Attributes
         {
             PropertyDescriptorCollection pdcProperties = null;
 
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。
@@ -36,11 +36,14 @@ namespace ECPay.SDK.Einvoice.Attributes
                 oNeedCheckedValue1 = pdcProperties.Find("Notify", true).GetValue(oSourceComponent);
                 oNeedCheckedValue2 = pdcProperties.Find("NotifyMail", true).GetValue(oSourceComponent);
 
-                if (oNeedCheckedValue1.Equals(InvoiceNotifyEnum.SMS) || oNeedCheckedValue1.Equals(InvoiceNotifyEnum.ALL) || string.IsNullOrEmpty(Convert.ToString(oNeedCheckedValue2)))
+                if (oNeedCheckedValue1.Equals(InvoiceNotifyEnum.SMS) ||
+                    oNeedCheckedValue1.Equals(InvoiceNotifyEnum.ALL) ||
+                    string.IsNullOrEmpty(Convert.ToString(oNeedCheckedValue2)))
                 {
                     return base.IsValid(oPropertyValue);
                 }
             }
+
             // 特殊驗證：當通知類別為E，電子郵件不可為空值。
             if (oPropertyName.Equals("NotifyMail"))
             {
@@ -51,7 +54,9 @@ namespace ECPay.SDK.Einvoice.Attributes
                 oNeedCheckedValue1 = pdcProperties.Find("Notify", true).GetValue(oSourceComponent);
                 oNeedCheckedValue2 = pdcProperties.Find("Phone", true).GetValue(oSourceComponent);
 
-                if (oNeedCheckedValue1.Equals(InvoiceNotifyEnum.Email) || oNeedCheckedValue1.Equals(InvoiceNotifyEnum.ALL) || string.IsNullOrEmpty(Convert.ToString(oNeedCheckedValue2)))
+                if (oNeedCheckedValue1.Equals(InvoiceNotifyEnum.Email) ||
+                    oNeedCheckedValue1.Equals(InvoiceNotifyEnum.ALL) ||
+                    string.IsNullOrEmpty(Convert.ToString(oNeedCheckedValue2)))
                 {
                     return base.IsValid(oPropertyValue);
                 }

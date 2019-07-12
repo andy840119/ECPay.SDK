@@ -14,7 +14,9 @@ namespace ECPay.SDK.Einvoice.Attributes
         /// <summary>
         /// 依據列印註記檢查欄位是否為必填的類別建構式
         /// </summary>
-        public RequiredByPrintFlagAttribute() : base() { }
+        public RequiredByPrintFlagAttribute() : base()
+        {
+        }
 
         /// <summary>
         /// 檢核是否通過
@@ -25,7 +27,7 @@ namespace ECPay.SDK.Einvoice.Attributes
         {
             PropertyDescriptorCollection pdcProperties = null;
 
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。

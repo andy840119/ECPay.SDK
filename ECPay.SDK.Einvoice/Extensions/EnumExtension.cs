@@ -14,9 +14,10 @@ namespace ECPay.SDK.Einvoice.Extensions
                 object[] attributes = memberInfo[0].GetCustomAttributes(typeof(TextAttribute), false);
                 if (attributes != null && attributes.Length > 0)
                 {
-                    return ((TextAttribute)attributes[0]).Text;
+                    return ((TextAttribute) attributes[0]).Text;
                 }
             }
+
             return enumeration.ToString();
         }
     }
