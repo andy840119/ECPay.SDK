@@ -32,7 +32,6 @@ namespace ECPay.SDK.Einvoice.Tests
 
             //交易單號不存在
             Assert.AreEqual("4000001", response.RtnCode);
-
         }
     }
 }

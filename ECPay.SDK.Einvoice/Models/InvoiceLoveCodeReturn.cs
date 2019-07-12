@@ -1,5 +1,4 @@
-﻿
-namespace ECPay.SDK.Einvoice.Models
+﻿namespace ECPay.SDK.Einvoice.Models
 {
     /// <summary>
     /// 愛心碼 回傳

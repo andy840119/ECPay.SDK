@@ -1,5 +1,4 @@
-﻿
-namespace ECPay.SDK.Einvoice.Models
+﻿namespace ECPay.SDK.Einvoice.Models
 {
     /// <summary>
     /// 手機條碼驗證 回傳
