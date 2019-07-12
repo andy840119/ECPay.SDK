@@ -32,7 +32,7 @@ namespace ECPay.SDK.Einvoice.Tests
             var response = Client.Post<AllowanceInvalidReturn, AllowanceInvalid>(allowanceInvalid);
 
             //因為這是很久以前的訂單，所以已經過期了
-            Assert.AreEqual("2000041", response);
+            Assert.AreEqual("2000041", response.RtnCode);
         }
     }
 }
