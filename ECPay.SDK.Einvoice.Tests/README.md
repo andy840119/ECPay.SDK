@@ -12,9 +12,9 @@
 
 [05.延遲或觸發開立發票](DelayIssueUnitTest.cs)
 
-06.開立折讓
+[06.開立折讓](InvoiceAllowanceUnitTest.cs)
 
-07.發票作廢
+[07.發票作廢](IssueInvalidUnitTest.cs)
 
 08.折讓作廢
 
