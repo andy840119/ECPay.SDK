@@ -6,7 +6,7 @@
 
 [ECPay.SDK.Einvoice](../ECPay.SDK.Einvoice)
 
-## 目前測試項目，有聯結的表示已經完成 : 
+## 目前測試項目
 
 [04.一般開立發票](InvoiceCreateUnitTest.cs)
 
