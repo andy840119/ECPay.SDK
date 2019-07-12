@@ -16,11 +16,11 @@
 
 [07.發票作廢](IssueInvalidUnitTest.cs)
 
-08.折讓作廢
+[08.折讓作廢](InvoiceAllowanceInvalidUnitTest.cs)
 
 [09.查詢發票](InvoiceSearchUnitTest.cs)
 
-10.查詢作廢發票
+[10.查詢作廢發票](QueryIssueInvalidUnitTest.cs)
 
 11.查詢折讓明細
 
