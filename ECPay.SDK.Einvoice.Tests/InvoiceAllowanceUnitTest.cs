@@ -17,40 +17,33 @@ namespace ECPay.SDK.Einvoice.Tests
         [TestMethod]
         public void TestInvoiceAllowance()
         {
-
             //1. 設定開立折讓資訊
             var allowance = new Allowance
             {
                 //廠商編號。
                 MerchantID = "2000132",
-
                 //發票號碼。
                 InvoiceNo = "XW00006065",
-
                 //通知類別
                 allowanceNotify = AllowanceNotifyEnum.SMS,
-
                 //客戶名稱
                 CustomerName = "客戶名稱",
-
                 //客戶手機號碼
                 NotifyPhone = "0912345678",
-
                 //客戶電子信箱
                 NotifyMail = "",
-
                 //折讓單總金額(含稅總金額)。
-                AllowanceAmount = "10"
+                AllowanceAmount = "1"
             };
 
             //2. 商品資訊的集合類別
             allowance.Items.Add(new Item
             {
                 ItemName = "糧食",//商品名稱
-                ItemPrice = "10",//商品單價
+                ItemPrice = "1",//商品單價
                 ItemCount = "1",//商品數量
                 ItemWord = "個",//單位
-                ItemAmount = "10",//總金額
+                ItemAmount = "1",//總金額
                 //ItemTaxType  =TaxTypeEnum.DutyFree//商品課稅別
             });
 
