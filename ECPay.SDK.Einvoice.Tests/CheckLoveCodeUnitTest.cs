@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ECPay.SDK.Einvoice.Models;
+﻿using ECPay.SDK.Einvoice.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 
 namespace ECPay.SDK.Einvoice.Tests
 {
@@ -16,35 +12,26 @@ namespace ECPay.SDK.Einvoice.Tests
         [TestMethod]
         public void TestCheckLoveCodeUnit()
         {
-            InvoiceLoveCode qinv = new InvoiceLoveCode();
-            qinv.MerchantID = "2000132";//廠商編號。
-            qinv.LoveCode = "329580";
+            //1. 建立愛心碼驗證物件
+            var invoiceLoveCode = new InvoiceLoveCode
+            {
+                //廠商編號。
+                MerchantID = "2000132",
 
-            //3. 執行API的回傳結果
-            var response = Client.Post(qinv);
+                //愛心碼
+                LoveCode = "329580"
+            };
 
-            //TODO : convert to class
+            //2. 執行API的回傳結果
+            var response = Client.Post<InvoiceLoveCodeReturn, InvoiceLoveCode>(invoiceLoveCode);
 
-            //TODO : assert
+            //表示成功
+            Assert.AreEqual("1", response.RtnCode);
 
-            /*
-            Invoice<InvoiceLoveCode> inv = new Invoice<InvoiceLoveCode>();
-            inv.Environment = Ecpay.EInvoice.Integration.Enumeration.EnvironmentEnum.Stage;
-            inv.HashIV = "q9jcZX8Ib9LM8wYk";
-            inv.HashKey = "ejCk326UnaZWKisg";
-            string json = inv.post(qinv);
+            //表示存在
+            Assert.AreEqual("Y", response.IsExist);
 
-            Dictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-
-
-            string temp = string.Empty;
-            temp = string.Format("結果<br> Data={0} ", values["IsExist"].ToString());
-            Response.Write(temp);
-            temp = string.Format("結果<br> RtnCode={0} ", values["RtnCode"].ToString());
-            Response.Write(temp);
-            // temp = string.Format("結果<br> RtnMsg={2} ", values["RtnMsg "].ToString());
-            // Response.Write(temp);
-            */
+            Assert.AreEqual("B12E2D8EBEAEC0EA37173BB65B77150F", response.CheckMacValue);
         }
     }
 }
