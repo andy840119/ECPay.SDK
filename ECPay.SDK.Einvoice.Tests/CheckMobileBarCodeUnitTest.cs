@@ -13,7 +13,7 @@ namespace ECPay.SDK.Einvoice.Tests
         public void TestCheckMobileBarCode()
         {
             //1. 產生條碼物件
-            var qinv = new MobileBarcode
+            var mobileBarcode = new MobileBarcode
             {
                 //廠商編號。
                 MerchantID = "2000132",
@@ -23,7 +23,7 @@ namespace ECPay.SDK.Einvoice.Tests
             };
 
             //2. 執行API的回傳結果
-            var response = Client.Post<MobileBarcodeReturn, MobileBarcode>(qinv);
+            var response = Client.Post<MobileBarcodeReturn, MobileBarcode>(mobileBarcode);
 
             //表示成功
             Assert.AreEqual("1", response.RtnCode);

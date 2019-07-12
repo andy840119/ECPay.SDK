@@ -19,16 +19,32 @@ namespace ECPay.SDK.Einvoice.Tests
         {
 
             //1. 設定開立折讓資訊
-            Allowance invc = new Allowance();
-            invc.MerchantID = "2000132";//廠商編號。
-            invc.InvoiceNo = "XW00006065";//發票號碼。
-            invc.allowanceNotify = AllowanceNotifyEnum.SMS;//通知類別
-            invc.CustomerName = "客戶名稱";//客戶名稱
-            invc.NotifyPhone = "0912345678";//客戶手機號碼
-            invc.NotifyMail = "";//客戶電子信箱
-            invc.AllowanceAmount = "10";//折讓單總金額(含稅總金額)。
-            //商品資訊的集合類別
-            invc.Items.Add(new Item()
+            var allowance = new Allowance
+            {
+                //廠商編號。
+                MerchantID = "2000132",
+
+                //發票號碼。
+                InvoiceNo = "XW00006065",
+
+                //通知類別
+                allowanceNotify = AllowanceNotifyEnum.SMS,
+
+                //客戶名稱
+                CustomerName = "客戶名稱",
+
+                //客戶手機號碼
+                NotifyPhone = "0912345678",
+
+                //客戶電子信箱
+                NotifyMail = "",
+
+                //折讓單總金額(含稅總金額)。
+                AllowanceAmount = "10"
+            };
+
+            //2. 商品資訊的集合類別
+            allowance.Items.Add(new Item
             {
                 ItemName = "糧食",//商品名稱
                 ItemPrice = "10",//商品單價
@@ -38,29 +54,22 @@ namespace ECPay.SDK.Einvoice.Tests
                 //ItemTaxType  =TaxTypeEnum.DutyFree//商品課稅別
             });
 
-            var response = Client.Post<AllowanceReturn, Allowance>(invc);
+            //3. 執行API的回傳結果
+            var response = Client.Post<AllowanceReturn, Allowance>(allowance);
 
-            //TODO : assert
+            //TODO : 會因為測試讓金額變得越小
 
-            /*
-            //2. 初始化發票Service物件
-            Invoice<Allowance> inv = new Invoice<Allowance>();
-            //3. 指定測試環境, 上線時請記得改Prod
-            inv.Environment = EnvironmentEnum.Stage;
-            //4. 設定歐付寶提供的 Key 和 IV
-            inv.HashIV = "q9jcZX8Ib9LM8wYk";
-            inv.HashKey = "ejCk326UnaZWKisg";
-            //5. 執行API的回傳結果(JSON)字串
-            string json = inv.post(invc);
-            //6. 解序列化，還原成物件使用
-            AllowanceReturn obj = new AllowanceReturn();
-            obj = JsonConvert.DeserializeObject<AllowanceReturn>(json);
-            //**印出來**
+            //表示成功
+            Assert.AreEqual("1", response.RtnCode);
 
-            string temp = string.Empty;
-            temp = string.Format("折讓結果<br> IA_Allow_No={0}<br> IA_Date={1}<br> IA_Invoice_No={2}<br> RtnCode={3} <br> RtnMsg={4} <br>IA_Remain_Allowance_Amt ={5} ", obj.IA_Allow_No, obj.IA_Date, obj.IA_Invoice_No, obj.RtnCode, obj.RtnMsg, obj.IA_Remain_Allowance_Amt);
-            Response.Write(temp);
-            */
+            //要有時間
+            Assert.AreNotEqual("", response.IA_Date);
+
+            //折讓單號
+            Assert.AreNotEqual("", response.IA_Allow_No);
+
+            //發票號碼要和送出時一樣
+            Assert.AreEqual(allowance.InvoiceNo, response.IA_Invoice_No);
         }
     }
 }
