@@ -10,9 +10,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.Script.Serialization;
+//using System.Web.UI;
+//using System.Web.UI.HtmlControls;
+//using System.Web.Script.Serialization;
 using ECPay.SDK.Helpers;
 using ECPay.SDK.Payment.Enumeration;
 using ECPay.SDK.Payment.Helpers;
@@ -21,8 +21,8 @@ using ECPay.SDK.Payment.Metadata;
 using ECPay.SDK.Payment.Models;
 using ECPay.SDK.Payment.WCF;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Mvc.RazorPages;
+//using Microsoft.AspNetCore.Http;
 
 namespace ECPay.Payment.Integration
 {
@@ -31,6 +31,7 @@ namespace ECPay.Payment.Integration
     /// </summary>
     public class AllInOne : AllInOneMetadata, IDisposable
     {
+        /*
         #region - 屬性欄位成員
 
         private Page _currentPage;
@@ -111,6 +112,7 @@ namespace ECPay.Payment.Integration
         }
 
         #endregion
+        */
 
         #region - AIO 介接函式庫的建構式
 
@@ -169,7 +171,8 @@ namespace ECPay.Payment.Integration
             if (errList.Count == 0)
             {
                 // 清除畫面控制項。
-                this.ClearPageControls();
+                //this.ClearPageControls();
+
                 // 信用卡特殊邏輯判斷(行動裝置畫面的信用卡分期處理，不支援定期定額)
                 if (this.Send.ChoosePayment == PaymentMethod.Credit && this.Send.DeviceSource == DeviceType.Mobile && !this.SendExtend.PeriodAmount.HasValue)
                 {
@@ -365,6 +368,8 @@ namespace ECPay.Payment.Integration
 
                 if (ServiceMethod == HttpMethod.HttpPOST)
                 {
+                    //TODO : prepare submit form
+                    /*
                     if (null != this.CurrentPage)
                     {
                         HtmlGenericControl htmJQuery = new HtmlGenericControl("script");
@@ -397,6 +402,7 @@ namespace ECPay.Payment.Integration
                         this.CurrentForm.Controls.AddAt(1, htmScript);
                         this.CurrentForm.Action = this.ServiceURL;
                     }
+                    */
                 }
                 else
                 {
@@ -406,40 +412,7 @@ namespace ECPay.Payment.Integration
 
             return errList;
         }
-      
-        public IEnumerable<string> CheckOutString(ref string html)
-        {
-            return this.CheckOutString("_self", ref html);
-        }
-     
-        public IEnumerable<string> CheckOutString(string target, ref string html)
-        {
-            List<string> errList = null;
-
-            this.CurrentPage = new Page() { EnableEventValidation = false };
-            this.CurrentHead = new HtmlHead() { Title = "Form Redirect" };
-            this.CurrentForm = new HtmlForm() { Name = "aspnetForm" };
-
-            errList = new List<string>();
-            errList.AddRange(this.CheckOut(target));
-
-            if (errList.Count == 0)
-            {
-                this.CurrentPage.Controls.Add(this.CurrentHead);
-                this.CurrentPage.Controls.Add(this.CurrentForm);
-
-                StringBuilder stringBuilder = new StringBuilder();
-                StringWriter stringWriter = new StringWriter(stringBuilder);
-                HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter);
-
-                this.CurrentForm.RenderControl(htmlWriter);
-
-                html = stringBuilder.ToString();
-            }
-
-            return errList;
-        }
-    
+        
         public IEnumerable<string> CheckOutFeedback(ref Hashtable feedback)
         {
             string szParameters = String.Empty;
@@ -946,24 +919,8 @@ namespace ECPay.Payment.Integration
 
             return errList;
         }
-        /// <summary>
-        /// 清除畫面上所有的控制項。
-        /// </summary>
-        private void ClearPageControls()
-        {
-            if (null != this.CurrentPage)
-            {
-                for (int i = this.CurrentForm.Controls.Count; i > 0; i--)
-                {
-                    Control oControl = this.CurrentForm.Controls[i - 1];
 
-                    if (oControl.GetType().Name != "ScriptManager" && oControl.GetType().Name != "ToolkitScriptManager")
-                    {
-                        this.CurrentForm.Controls.Remove(oControl);
-                    }
-                }
-            }
-        }
+
         /// <summary>
         /// 產生參數字串。
         /// </summary>
