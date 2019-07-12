@@ -14,13 +14,15 @@ namespace ECPay.SDK.Einvoice.Attributes
         /// <summary>
         /// 依據課稅別檢查該欄位是否必填的類別建構式。
         /// </summary>
-        public RequiredByTaxTypeAttribute() : base() { }
+        public RequiredByTaxTypeAttribute() : base()
+        {
+        }
 
         public override bool IsValid(object value)
         {
             PropertyDescriptorCollection pdcProperties = null;
 
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。
@@ -38,7 +40,8 @@ namespace ECPay.SDK.Einvoice.Attributes
 
                 if (oNeedCheckedValue.Equals(TaxTypeEnum.ZeroTaxRate))
                 {
-                    if (!(oPropertyValue.Equals(CustomsClearanceMarkEnum.No) || oPropertyValue.Equals(CustomsClearanceMarkEnum.Yes)))
+                    if (!(oPropertyValue.Equals(CustomsClearanceMarkEnum.No) ||
+                          oPropertyValue.Equals(CustomsClearanceMarkEnum.Yes)))
                         return false;
                 }
                 else

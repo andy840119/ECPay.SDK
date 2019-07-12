@@ -20,22 +20,25 @@ namespace ECPay.SDK.Einvoice.Service
         {
             foreach (PropertyInfo propInfo in source.GetType().GetProperties())
             {
-                var NeedDetailValid = propInfo.GetCustomAttributes(typeof(NeedDetailValidAttribute), inherit: true).FirstOrDefault();
+                var NeedDetailValid = propInfo.GetCustomAttributes(typeof(NeedDetailValidAttribute), inherit: true)
+                    .FirstOrDefault();
                 //當需要Detail驗證時
                 if (NeedDetailValid != null)
                 {
-                    IEnumerable<object> tmp = (IEnumerable<object>)propInfo.GetValue(source, null);
+                    IEnumerable<object> tmp = (IEnumerable<object>) propInfo.GetValue(source, null);
                     foreach (var item in tmp)
                     {
                         foreach (PropertyInfo detailPropInfo in item.GetType().GetProperties())
                         {
-                            object[] customAttributes = detailPropInfo.GetCustomAttributes(typeof(ValidationAttribute), inherit: true);
+                            object[] customAttributes =
+                                detailPropInfo.GetCustomAttributes(typeof(ValidationAttribute), inherit: true);
 
                             foreach (object customAttribute in customAttributes)
                             {
                                 ValidationAttribute validationAttribute;
                                 bool isValid;
-                                ValidAttribute(item, detailPropInfo, customAttribute, out validationAttribute, out isValid);
+                                ValidAttribute(item, detailPropInfo, customAttribute, out validationAttribute,
+                                    out isValid);
 
                                 if (!isValid)
                                 {
@@ -47,7 +50,8 @@ namespace ECPay.SDK.Einvoice.Service
                 }
                 else
                 {
-                    object[] customAttributes = propInfo.GetCustomAttributes(typeof(ValidationAttribute), inherit: true);
+                    object[] customAttributes =
+                        propInfo.GetCustomAttributes(typeof(ValidationAttribute), inherit: true);
 
                     foreach (object customAttribute in customAttributes)
                     {
@@ -84,22 +88,31 @@ namespace ECPay.SDK.Einvoice.Service
             }
         }
 
-        private static void ValidAttribute(object item, PropertyInfo detailPropInfo, object customAttribute, out ValidationAttribute validationAttribute, out bool isValid)
+        private static void ValidAttribute(object item, PropertyInfo detailPropInfo, object customAttribute,
+            out ValidationAttribute validationAttribute, out bool isValid)
         {
-            validationAttribute = (ValidationAttribute)customAttribute;
+            validationAttribute = (ValidationAttribute) customAttribute;
 
             isValid = false;
             // 預設驗證的 Attributes。
-            if (validationAttribute.GetType() == typeof(RequiredAttribute) || validationAttribute.GetType() == typeof(RangeAttribute)
-                || validationAttribute.GetType() == typeof(RegularExpressionAttribute) || validationAttribute.GetType() == typeof(StringLengthAttribute))
+            if (validationAttribute.GetType() == typeof(RequiredAttribute) || validationAttribute.GetType() ==
+                                                                           typeof(RangeAttribute)
+                                                                           || validationAttribute.GetType() ==
+                                                                           typeof(RegularExpressionAttribute) ||
+                                                                           validationAttribute.GetType() ==
+                                                                           typeof(StringLengthAttribute))
             {
-                isValid = validationAttribute.IsValid(detailPropInfo.GetValue(item, BindingFlags.GetProperty, null, null, null));
+                isValid = validationAttribute.IsValid(detailPropInfo.GetValue(item, BindingFlags.GetProperty, null,
+                    null, null));
             }
 
             // 自訂驗證的 Attributes。
             else
             {
-                isValid = validationAttribute.IsValid(new object[] { detailPropInfo.Name, detailPropInfo.GetValue(item, BindingFlags.GetProperty, null, null, null), item });
+                isValid = validationAttribute.IsValid(new object[]
+                {
+                    detailPropInfo.Name, detailPropInfo.GetValue(item, BindingFlags.GetProperty, null, null, null), item
+                });
             }
         }
     }

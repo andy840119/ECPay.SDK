@@ -14,7 +14,9 @@ namespace ECPay.SDK.Einvoice.Attributes
         /// <summary>
         /// 依據是否捐贈電子發票檢查該欄位是否必填的類別建構式。
         /// </summary>
-        public RequiredByDonationAttribute() : base() { }
+        public RequiredByDonationAttribute() : base()
+        {
+        }
 
         /// <summary>
         /// 是否檢核通過。
@@ -25,7 +27,7 @@ namespace ECPay.SDK.Einvoice.Attributes
         {
             PropertyDescriptorCollection pdcProperties = null;
 
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。
@@ -45,6 +47,7 @@ namespace ECPay.SDK.Einvoice.Attributes
                     return base.IsValid(oPropertyValue);
                 }
             }
+
             //當捐贈時，列印註記不可為1(列印)。
             if (oPropertyName.Equals("Print"))
             {
@@ -59,6 +62,7 @@ namespace ECPay.SDK.Einvoice.Attributes
                     return false;
                 }
             }
+
             //當統一編號有值時，不可捐贈。
             if (oPropertyName.Equals("CustomerIdentifier"))
             {
@@ -68,11 +72,13 @@ namespace ECPay.SDK.Einvoice.Attributes
 
                 oNeedCheckedValue = pdcProperties.Find("Donation", true).GetValue(oSourceComponent);
 
-                if (oNeedCheckedValue.Equals(DonationEnum.Yes) && !string.IsNullOrEmpty(Convert.ToString(oPropertyValue)))
+                if (oNeedCheckedValue.Equals(DonationEnum.Yes) &&
+                    !string.IsNullOrEmpty(Convert.ToString(oPropertyValue)))
                 {
                     return false;
                 }
             }
+
             return true;
         }
     }

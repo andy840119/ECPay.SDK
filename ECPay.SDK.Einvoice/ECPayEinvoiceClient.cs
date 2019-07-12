@@ -21,7 +21,7 @@ using ECPay.SDK.Helpers;
 
 namespace ECPay.SDK.Einvoice
 {
-    public class ECPayEinvoiceClient : IDisposable 
+    public class ECPayEinvoiceClient : IDisposable
     {
         #region Fields
 
@@ -32,7 +32,11 @@ namespace ECPay.SDK.Einvoice
         /// <summary>
         /// 不加入驗證的參數
         /// </summary>
-        private string[] IgnoreMacValues = { "CHECKMACVALUE", "ITEMNAME", "ITEMWORD", "REASON", "INVOICEREMARK", "SPECSOURCE", "ITEMREMARK", "POSBARCODE", "QRCODE_LEFT", "QRCODE_RIGHT" };
+        private string[] IgnoreMacValues =
+        {
+            "CHECKMACVALUE", "ITEMNAME", "ITEMWORD", "REASON", "INVOICEREMARK", "SPECSOURCE", "ITEMREMARK",
+            "POSBARCODE", "QRCODE_LEFT", "QRCODE_RIGHT"
+        };
 
         #endregion
 
@@ -68,6 +72,7 @@ namespace ECPay.SDK.Einvoice
                     result.Append(item + " ");
                 }
             }
+
             return result.ToString();
         }
 
@@ -85,9 +90,9 @@ namespace ECPay.SDK.Einvoice
 
             //取出物件的原型
             foreach (PropertyInfo item in elemType.GetProperties(
-                BindingFlags.Public |
-                BindingFlags.NonPublic |
-                BindingFlags.Instance)
+                    BindingFlags.Public |
+                    BindingFlags.NonPublic |
+                    BindingFlags.Instance)
                 //.Where(x => !x.GetCustomAttributes(typeof(NonProcessValueAttribute),true).Any())
                 .OrderBy(i => i.Name))
             {
@@ -100,12 +105,13 @@ namespace ECPay.SDK.Einvoice
                 {
                     if (item.PropertyType.IsEnum) //Enum
                     {
-                        int enumVlue = (int)Enum.Parse(item.PropertyType, item.GetValue(obj, null).ToString());
+                        int enumVlue = (int) Enum.Parse(item.PropertyType, item.GetValue(obj, null).ToString());
                         value = enumVlue.ToString();
                     }
                     else if (item.PropertyType.IsClass && item.PropertyType.IsSerializable) //String
-                        value = (string)item.GetValue(obj, null);
-                    else if (item.PropertyType.IsValueType && item.PropertyType.IsSerializable && !item.PropertyType.IsEnum) //Int
+                        value = (string) item.GetValue(obj, null);
+                    else if (item.PropertyType.IsValueType && item.PropertyType.IsSerializable &&
+                             !item.PropertyType.IsEnum) //Int
                         value = item.GetValue(obj, null).ToString();
                     //else if (item.PropertyType.IsGenericType && typeof(ICollection<>).IsAssignableFrom(item.PropertyType.GetGenericTypeDefinition()) ||
                     //        item.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)))
@@ -208,7 +214,9 @@ namespace ECPay.SDK.Einvoice
                 if (!IgnoreMacValues.Contains(key.ToUpper()))
                     nvc.Add(key, value);
             }
-            string param = string.Join("&", nvc.AllKeys.OrderBy(key => key).Select(key => key + "=" + nvc[key]).ToArray());
+
+            string param = string.Join("&",
+                nvc.AllKeys.OrderBy(key => key).Select(key => key + "=" + nvc[key]).ToArray());
             return param;
         }
 
@@ -228,10 +236,11 @@ namespace ECPay.SDK.Einvoice
             WebRequest webRequest = WebRequest.Create(apiURL);
             {
                 webRequest.Credentials = CredentialCache.DefaultCredentials;
-                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+                ServicePointManager.ServerCertificateValidationCallback =
+                    new RemoteCertificateValidationCallback(CheckValidationResult);
 
                 // SecurityProtocolType.Tls1.2;
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType) 3072;
 
                 webRequest.ContentType = "application/x-www-form-urlencoded";
                 webRequest.Method = "POST";
@@ -245,10 +254,12 @@ namespace ECPay.SDK.Einvoice
 
                 using (var webResponse = webRequest.GetResponse())
                 {
-                    using (StreamReader oReader = new StreamReader(webResponse.GetResponseStream() ?? throw new InvalidOperationException()))
+                    using (StreamReader oReader =
+                        new StreamReader(webResponse.GetResponseStream() ?? throw new InvalidOperationException()))
                     {
                         szResult = oReader.ReadToEnd().Trim();
                     }
+
                     webResponse.Close();
                 }
             }
@@ -272,7 +283,8 @@ namespace ECPay.SDK.Einvoice
             File.AppendAllText(fileName, fileContent.ToString());
         }
 
-        private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain,
+            SslPolicyErrors errors)
         {
             return true;
         }
@@ -317,8 +329,8 @@ namespace ECPay.SDK.Einvoice
             return validReturnString(result);
         }
 
-        public R  Post<R,T>(T obj)
-            where R : ReturnBase 
+        public R Post<R, T>(T obj)
+            where R : ReturnBase
             where T : Iinvoice
         {
             var result = Post(obj);

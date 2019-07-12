@@ -5,12 +5,12 @@ using ECPay.SDK.Einvoice.Enumeration;
 
 namespace ECPay.SDK.Einvoice.Tests
 {
-    /// <summary>
-    /// 一般開立發票
-    /// </summary>
     [TestClass]
     public class InvoiceCreateUnitTest : BaseUnitTest
     {
+        /// <summary>
+        /// 一般開立發票
+        /// </summary>
         [TestMethod]
         public void TestInvoiceCreate()
         {

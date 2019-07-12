@@ -14,12 +14,14 @@ namespace ECPay.SDK.Einvoice.Attributes
         /// <summary>
         /// 依據手機或郵件檢查欄位則一填寫的類別建構式
         /// </summary>
-        public RequiredByPhoneOrEmailAttribute() : base() { }
+        public RequiredByPhoneOrEmailAttribute() : base()
+        {
+        }
 
         /// <summary>
         /// 手機或郵件擇一條件檢查用的參數。
         /// </summary>
-        private string[] szaPhoneOrEmail = new string[] { "CustomerPhone", "CustomerEmail" };
+        private string[] szaPhoneOrEmail = new string[] {"CustomerPhone", "CustomerEmail"};
 
         /// <summary>
         /// 檢核是否通過
@@ -30,7 +32,7 @@ namespace ECPay.SDK.Einvoice.Attributes
         {
             PropertyDescriptorCollection pdcProperties = null;
 
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。
@@ -45,11 +47,14 @@ namespace ECPay.SDK.Einvoice.Attributes
 
                 pdcProperties = TypeDescriptor.GetProperties(oSourceComponent);
 
-                if (oPropertyName.Equals("CustomerPhone")) oNeedCheckedValue = pdcProperties.Find("CustomerEmail", true).GetValue(oSourceComponent);
-                if (oPropertyName.Equals("CustomerEmail")) oNeedCheckedValue = pdcProperties.Find("CustomerPhone", true).GetValue(oSourceComponent);
+                if (oPropertyName.Equals("CustomerPhone"))
+                    oNeedCheckedValue = pdcProperties.Find("CustomerEmail", true).GetValue(oSourceComponent);
+                if (oPropertyName.Equals("CustomerEmail"))
+                    oNeedCheckedValue = pdcProperties.Find("CustomerPhone", true).GetValue(oSourceComponent);
 
                 return base.IsValid(oNeedCheckedValue);
             }
+
             return true;
         }
     }

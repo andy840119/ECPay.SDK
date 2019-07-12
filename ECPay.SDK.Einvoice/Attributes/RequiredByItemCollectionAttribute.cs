@@ -10,7 +10,7 @@ namespace ECPay.SDK.Einvoice.Attributes
     {
         public override bool IsValid(object value)
         {
-            object[] oValues = (object[])value;
+            object[] oValues = (object[]) value;
 
             object oPropertyName = oValues[0]; // 屬性的名稱。
             object oPropertyValue = oValues[1]; // 屬性的值。
@@ -18,7 +18,7 @@ namespace ECPay.SDK.Einvoice.Attributes
 
             if (oPropertyName.Equals("Items"))
             {
-                var _items = (List<Item>)oPropertyValue;
+                var _items = (List<Item>) oPropertyValue;
                 if (_items.Count == 0) return false;
 
                 foreach (var item in _items)
@@ -28,21 +28,25 @@ namespace ECPay.SDK.Einvoice.Attributes
                         ErrorMessage = "ItemName is required.";
                         return false;
                     }
+
                     if (string.IsNullOrEmpty(Convert.ToString(item.ItemPrice)))
                     {
                         ErrorMessage = "ItemPrice is required.";
                         return false;
                     }
+
                     if (string.IsNullOrEmpty(Convert.ToString(item.ItemAmount)))
                     {
                         ErrorMessage = "ItemAmount is required.";
                         return false;
                     }
+
                     if (string.IsNullOrEmpty(Convert.ToString(item.ItemWord)))
                     {
                         ErrorMessage = "ItemWord is required.";
                         return false;
                     }
+
                     //if (item.ItemCount <= 0)
                     //{
                     //    ErrorMessage = "ItemCount must be greater than 0.";

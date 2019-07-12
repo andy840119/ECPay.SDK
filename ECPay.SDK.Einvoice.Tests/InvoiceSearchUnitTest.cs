@@ -1,18 +1,18 @@
-﻿using System;
-using ECPay.SDK.Einvoice.Models;
+﻿using ECPay.SDK.Einvoice.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ECPay.SDK.Einvoice.Tests
 {
-    /// <summary>
-    /// 查詢發票
-    /// </summary>
     [TestClass]
     public class InvoiceSearchUnitTest : BaseUnitTest
     {
+        /// <summary>
+        /// 查詢發票
+        /// </summary>
         [TestMethod]
         public void TestInvoiceSearch()
         {
+            //1. 準備物件
             var query = new QueryInvoice
             {
                 //廠商編號。
@@ -21,7 +21,7 @@ namespace ECPay.SDK.Einvoice.Tests
                 RelateNumber = "ecPay31773",
             };
 
-            //3. 執行API的回傳結果
+            //2. 執行API的回傳結果
             var response = Client.Post<QueryInvoiceReturn, QueryInvoice>(query);
 
             //表示成功

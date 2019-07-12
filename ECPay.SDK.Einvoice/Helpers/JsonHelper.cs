@@ -19,6 +19,7 @@ namespace ECPay.SDK.Einvoice.Helpers
             {
                 result = false;
             }
+
             return result;
         }
     }
